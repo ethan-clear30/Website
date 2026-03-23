@@ -228,6 +228,21 @@
       max-width: 900px;
       margin: 0 auto;
       text-align: center;
+      opacity: 0;
+      transform: translateY(48px);
+      animation: heroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+    }
+    @keyframes heroReveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    [data-scroll-reveal] {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    [data-scroll-reveal].scroll-reveal--visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     .hero-eyebrow {
       font-size: 13px; font-weight: 500;
@@ -663,7 +678,7 @@
 
   <div class="divider"></div>
 
-  <section class="carousel-section">
+  <section class="carousel-section" data-scroll-reveal>
     <div class="carousel-inner">
 
       <div class="carousel-tabs">
@@ -782,6 +797,22 @@
       start();
       tabs.forEach(function(t) { t.addEventListener('click', function() { go(+this.dataset.slide); }); });
       dots.forEach(function(d) { d.addEventListener('click', function() { go(+this.dataset.slide); }); });
+    })();
+
+    (function() {
+      var revealEls = document.querySelectorAll('[data-scroll-reveal]');
+      if (revealEls.length) {
+        if ('IntersectionObserver' in window) {
+          var revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) entry.target.classList.add('scroll-reveal--visible');
+            });
+          }, { rootMargin: '0px 0px -80px 0px', threshold: 0.1 });
+          revealEls.forEach(function(el) { revealObserver.observe(el); });
+        } else {
+          revealEls.forEach(function(el) { el.classList.add('scroll-reveal--visible'); });
+        }
+      }
     })();
   </script>
 </body>

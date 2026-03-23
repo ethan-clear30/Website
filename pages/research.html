@@ -257,6 +257,26 @@
     }
     .research-hero-left {
       min-width: 0;
+      opacity: 0;
+      transform: translateY(48px);
+      animation: heroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+    }
+    .research-hero-collage {
+      opacity: 0;
+      transform: translateY(48px);
+      animation: heroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+    }
+    @keyframes heroReveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    [data-scroll-reveal] {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    [data-scroll-reveal].scroll-reveal--visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .research-hero-headline .research-hero-line1,
@@ -1271,7 +1291,7 @@
         </div>
       </section>
 
-      <section class="research-section">
+      <section class="research-section" data-scroll-reveal>
         <div class="research-box-header">
           <p class="research-box-label">Research backed by universities</p>
           <p class="research-box-statement">We evaluate <strong>engagement</strong>, <strong>outcomes</strong>, and <strong>real-world use</strong> of digital cannabis support tools.</p>
@@ -1295,7 +1315,7 @@
         </div>
       </section>
 
-      <section class="research-quote-section">
+      <section class="research-quote-section" data-scroll-reveal>
         <div class="research-logos-wrap">
           <p class="research-logos-label">Research partners</p>
           <div class="research-logos">
@@ -1332,7 +1352,7 @@
         </div>
       </section>
 
-      <section class="research-nih-section">
+      <section class="research-nih-section" data-scroll-reveal>
         <div class="research-nih-logo"><img src="../images/Research_NIH_Logo.png" alt="National Institutes of Health"></div>
         <div class="research-nih-inner">
           <div class="research-nih-header">
@@ -1342,7 +1362,7 @@
         </div>
       </section>
 
-      <section class="research-advisors-section">
+      <section class="research-advisors-section" data-scroll-reveal>
         <div class="research-advisors-inner">
           <div class="research-advisors-grid">
             <div>
@@ -1361,7 +1381,7 @@
         </div>
       </section>
 
-      <section class="research-leadership-section">
+      <section class="research-leadership-section" data-scroll-reveal>
         <div class="research-leadership-inner">
           <div class="research-leadership-header-wrap">
             <h2 class="research-leadership-header">Advisory Leadership</h2>
@@ -1416,7 +1436,7 @@
         </div>
       </section>
 
-      <section class="research-publications-section">
+      <section class="research-publications-section" data-scroll-reveal>
         <div class="research-publications-inner">
           <div>
             <h2 class="research-publications-header">Peer-reviewed research and publications</h2>
@@ -1431,7 +1451,7 @@
         </div>
       </section>
 
-      <section class="research-citations-section">
+      <section class="research-citations-section" data-scroll-reveal>
         <div class="research-citations-inner">
           <h2 class="research-citations-header">Hundreds of Publications. Tens of Thousands of Citations.</h2>
 
@@ -1548,6 +1568,19 @@
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) closeMenu();
       });
+      var revealEls = document.querySelectorAll('[data-scroll-reveal]');
+      if (revealEls.length) {
+        if ('IntersectionObserver' in window) {
+          var revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) entry.target.classList.add('scroll-reveal--visible');
+            });
+          }, { rootMargin: '0px 0px -80px 0px', threshold: 0.1 });
+          revealEls.forEach(function(el) { revealObserver.observe(el); });
+        } else {
+          revealEls.forEach(function(el) { el.classList.add('scroll-reveal--visible'); });
+        }
+      }
     })();
   </script>
 

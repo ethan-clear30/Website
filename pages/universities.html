@@ -321,6 +321,26 @@
       .universities-hero-left {
         flex: 0 0 480px;
         max-width: 480px;
+        opacity: 0;
+        transform: translateY(48px);
+        animation: heroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+      }
+      .universities-logos {
+        opacity: 0;
+        transform: translateY(48px);
+        animation: heroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+      }
+      @keyframes heroReveal {
+        to { opacity: 1; transform: translateY(0); }
+      }
+      [data-scroll-reveal] {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      [data-scroll-reveal].scroll-reveal--visible {
+        opacity: 1;
+        transform: translateY(0);
       }
       .universities-hero-headline {
         font-family: "Lexend", sans-serif;
@@ -1404,7 +1424,7 @@
       </div>
 
       <!-- ── Cannabis Cards Section ── -->
-      <section class="cannabis-section">
+      <section class="cannabis-section" data-scroll-reveal>
         <div class="cannabis-inner">
           <h2 class="cannabis-title">
             Cannabis Use has Increased Dramatically…
@@ -1480,7 +1500,7 @@
       </section>
 
       <!-- ── Stats Card Section ── -->
-      <section class="stats-section">
+      <section class="stats-section" data-scroll-reveal>
         <div class="stats-card">
           <div class="stats-column">
             <div class="stats-number stats-number--green">3x</div>
@@ -1509,7 +1529,7 @@
       </section>
 
       <!-- ── The Clear30 Approach Section ── -->
-      <section class="approach-section">
+      <section class="approach-section" data-scroll-reveal>
         <div class="approach-inner">
           <div class="approach-content">
             <h2 class="approach-heading">The Clear30 Approach</h2>
@@ -1544,7 +1564,7 @@
       </section>
 
       <!-- ── How the partnership works Section ── -->
-      <section class="partnership-section">
+      <section class="partnership-section" data-scroll-reveal>
         <div class="partnership-inner">
           <h2 class="partnership-heading">How the partnership works</h2>
           <p class="partnership-subtitle">
@@ -1584,7 +1604,7 @@
       </section>
 
       <!-- ── Explore Resources Section ── -->
-      <section class="resources-section">
+      <section class="resources-section" data-scroll-reveal>
         <div class="resources-inner">
           <h2 class="resources-heading">
             Explore free resources and more that we offer!
@@ -1930,6 +1950,19 @@
         document.addEventListener("keydown", function (e) {
           if (e.key === "Escape" && mobileMenu && mobileMenu.classList.contains("open")) closeMenu();
         });
+        var revealEls = document.querySelectorAll("[data-scroll-reveal]");
+        if (revealEls.length) {
+          if ("IntersectionObserver" in window) {
+            var revealObserver = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) entry.target.classList.add("scroll-reveal--visible");
+              });
+            }, { rootMargin: "0px 0px -80px 0px", threshold: 0.1 });
+            revealEls.forEach(function (el) { revealObserver.observe(el); });
+          } else {
+            revealEls.forEach(function (el) { el.classList.add("scroll-reveal--visible"); });
+          }
+        }
       })();
     </script>
 

@@ -373,6 +373,21 @@
     .partner-hero-left {
       flex: 1;
       max-width: 560px;
+      opacity: 0;
+      transform: translateY(48px);
+      animation: heroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+    }
+    @keyframes heroReveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    [data-scroll-reveal] {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    [data-scroll-reveal].scroll-reveal--visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .partner-hero-headline {
@@ -434,6 +449,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      opacity: 0;
+      transform: translateY(48px);
+      animation: heroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
     }
 
     .partner-hero-placeholder,
@@ -1481,7 +1499,7 @@
       </div>
     </section>
 
-    <section class="partner-cards-section">
+    <section class="partner-cards-section" data-scroll-reveal>
       <div class="partner-cards">
         <div class="partner-card">
           <h3>Universities</h3>
@@ -1501,7 +1519,7 @@
       </div>
     </section>
 
-    <section class="approach-section">
+    <section class="approach-section" data-scroll-reveal>
       <div class="approach-content">
         <div class="approach-left">
           <h2 class="approach-headline">
@@ -1523,7 +1541,7 @@
       </div>
     </section>
 
-    <section class="action-section">
+    <section class="action-section" data-scroll-reveal>
       <div class="action-content">
         <h2 class="action-headline">See Clear30 in Action</h2>
         <p class="action-subtitle">How we're helping institutions tackle the cannabis crisis — in under two minutes.</p>
@@ -1533,7 +1551,7 @@
       </div>
     </section>
 
-    <section class="why-section">
+    <section class="why-section" data-scroll-reveal>
       <div class="why-content">
         <h2 class="why-headline">Why Clear30?</h2>
         <div class="why-body">
@@ -1570,7 +1588,7 @@
       </div>
     </section>
 
-    <section class="engagement-section">
+    <section class="engagement-section" data-scroll-reveal>
       <div class="engagement-content">
         <h2 class="engagement-headline">Engagement that lasts</h2>
         <p class="engagement-subtitle">Real results from a university pilot partnership.</p>
@@ -1615,7 +1633,7 @@
       </div>
     </section>
 
-    <section class="scholarships-section">
+    <section class="scholarships-section" data-scroll-reveal>
       <div class="scholarships-inner">
         <h2 class="scholarships-headline">Scholarships</h2>
         <div class="scholarships-metric">1,600+</div>
@@ -1623,7 +1641,7 @@
       </div>
     </section>
 
-    <section class="cta-card-section">
+    <section class="cta-card-section" data-scroll-reveal>
       <div class="cta-card-wrap">
         <div class="cta-card">
           <img src="../images/Partner_with_us_bottom_imgae_mockup.png" alt="Clear30 app on phone" class="cta-card-image">
@@ -1720,6 +1738,20 @@
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) closeMenu();
       });
+
+      var revealEls = document.querySelectorAll('[data-scroll-reveal]');
+      if (revealEls.length) {
+        if ('IntersectionObserver' in window) {
+          var revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) entry.target.classList.add('scroll-reveal--visible');
+            });
+          }, { rootMargin: '0px 0px -80px 0px', threshold: 0.1 });
+          revealEls.forEach(function(el) { revealObserver.observe(el); });
+        } else {
+          revealEls.forEach(function(el) { el.classList.add('scroll-reveal--visible'); });
+        }
+      }
     })();
   </script>
 

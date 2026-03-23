@@ -336,9 +336,30 @@
       gap: 120px;
     }
 
+    @keyframes heroReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Scroll-triggered reveal animation */
+    [data-scroll-reveal] {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    [data-scroll-reveal].scroll-reveal--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .hero-left {
       flex: 1;
       max-width: 520px;
+      opacity: 0;
+      transform: translateY(48px);
+      animation: heroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
     }
 
     .hero-right {
@@ -346,6 +367,9 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
+      opacity: 0;
+      transform: translateY(48px);
+      animation: heroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
     }
 
     .trusted-badge {
@@ -1432,7 +1456,7 @@
     </section>
 
     <!-- ── Institutions ── -->
-    <section class="institutions">
+    <section class="institutions" data-scroll-reveal>
       <h2 class="institutions-title">Trusted by leading institutions</h2>
       <div class="institution-logos">
 
@@ -1464,7 +1488,7 @@
   </div><!-- end hero-gradient-wrapper -->
 
   <!-- ── Cannabis Facts ── -->
-  <section class="cannabis-facts">
+  <section class="cannabis-facts" data-scroll-reveal>
     <div class="cannabis-facts-container">
       <div class="cannabis-facts-header">
         <h2>Cannabis today is not what it used to be</h2>
@@ -1519,7 +1543,7 @@
   </section>
 
   <!-- ── Real Results ── -->
-  <section class="results-section">
+  <section class="results-section" data-scroll-reveal>
     <div class="results-banner">
       <h2>Real Results in Just 30 Days.</h2>
       <div class="results-stats">
@@ -1544,7 +1568,7 @@
   </section>
 
   <!-- ── Why Trust Clear30 ── -->
-  <section class="trust-clear30">
+  <section class="trust-clear30" data-scroll-reveal>
     <div class="trust-clear30-container">
       <h2 class="trust-clear30-title">Why Users and Institutions Trust Clear30</h2>
       <div class="trust-clear30-cards">
@@ -1594,7 +1618,7 @@
 
   <!-- ── Testimonials ── -->
   <div class="testimonials-path-wrapper">
-    <section class="testimonials-section">
+    <section class="testimonials-section" data-scroll-reveal>
       <div class="testimonials-header">
         <h2>What are our users saying?</h2>
         <div class="testimonials-stars">★★★★★</div>
@@ -1658,7 +1682,7 @@
   </div>
 
   <!-- ── Choose Your Path ── -->
-  <section class="path-section">
+  <section class="path-section" data-scroll-reveal>
     <h2>Choose Your Own Path to Get Clear</h2>
     <div class="path-cards">
       <div class="path-card">
@@ -1685,7 +1709,7 @@
   </section>
 
   <!-- ── FAQ ── -->
-  <section class="faq-section">
+  <section class="faq-section" data-scroll-reveal>
     <h2>Frequently Asked Questions</h2>
     <div class="faq-grid">
       <div class="faq-column">
@@ -1956,6 +1980,21 @@
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) closeMenu();
       });
+
+      /* Scroll reveal animation */
+      var revealEls = document.querySelectorAll('[data-scroll-reveal]');
+      if (revealEls.length) {
+        if ('IntersectionObserver' in window) {
+          var revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) entry.target.classList.add('scroll-reveal--visible');
+            });
+          }, { rootMargin: '0px 0px -80px 0px', threshold: 0.1 });
+          revealEls.forEach(function(el) { revealObserver.observe(el); });
+        } else {
+          revealEls.forEach(function(el) { el.classList.add('scroll-reveal--visible'); });
+        }
+      }
     })();
   </script>
 </body>
