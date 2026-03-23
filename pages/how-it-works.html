@@ -226,7 +226,7 @@
       transition: transform 0.52s cubic-bezier(0.4,0,0.2,1);
     }
 
-    /* Each slide: image only, white card with rounded corners */
+    /* Each slide: image + compact copy */
     .carousel-slide {
       flex: 0 0 100%; min-width: 100%;
       background: #fff;
@@ -234,9 +234,10 @@
       overflow: hidden;
       box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 32px 48px 24px;
+      justify-content: flex-start;
+      padding: 32px 48px 28px;
       transition: box-shadow 0.3s ease;
     }
 
@@ -246,11 +247,38 @@
       max-width: 900px;
       border-radius: 36px;
       overflow: hidden;
+      margin-bottom: 12px;
+      position: relative;
     }
     .slide-img-wrap img {
       width: 100%;
       height: auto;
       display: block;
+    }
+    /* Slide 1: crop bottom of image to hide "Clear30 starts with your why" paragraph */
+    .carousel-slide:nth-child(1) .slide-img-wrap {
+      max-height: 420px;
+    }
+    .carousel-slide:nth-child(1) .slide-img-wrap img {
+      object-fit: cover;
+      object-position: center top;
+      width: 100%;
+      height: 420px;
+    }
+
+    /* Slide copy: compact, supports the image—minimal so images shine */
+    .slide-copy {
+      max-width: 440px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .slide-copy-text {
+      font-family: 'Lexend', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #555;
+      line-height: 1.5;
+      margin: 0;
     }
 
     /* status bar */
@@ -378,7 +406,11 @@
       .hero { padding: 32px 20px 40px; }
       .hero-title { font-size: 28px; margin-bottom: 24px; }
       .carousel-section { padding: 48px 20px 56px; }
-      .carousel-slide { padding: 32px 20px 40px; min-height: 420px; }
+      .carousel-slide { padding: 24px 20px 32px; min-height: auto; }
+      .carousel-slide:nth-child(1) .slide-img-wrap { max-height: 300px; }
+      .carousel-slide:nth-child(1) .slide-img-wrap img { height: 300px; }
+      .slide-copy { max-width: 100%; padding: 0 8px; }
+      .slide-copy-text { font-size: 13px; }
       .phone { width: 110px; }
       .phone:nth-child(1) { left: calc(50% - 210px); }
       .phone:nth-child(2) { left: calc(50% - 112px); }
@@ -511,8 +543,6 @@
   <section class="carousel-section">
     <div class="carousel-inner">
 
-      <h2 class="carousel-heading">A simple and supportive recovery process<br>that works for you</h2>
-
       <div class="carousel-tabs">
         <button class="carousel-tab active" data-slide="0">Set intention</button>
         <button class="carousel-tab" data-slide="1">Track daily</button>
@@ -528,31 +558,49 @@
           <!-- SLIDE 1: Set intention -->
           <div class="carousel-slide">
             <div class="slide-img-wrap"><img src="../images/How_it_works__set_intention.png" alt="Set intention"></div>
+            <div class="slide-copy">
+              <p class="slide-copy-text"><strong>1. Set intention</strong> You define the goal. Clear30 asks what you want to change, why it matters, and builds a personalized program around your answer.</p>
+            </div>
           </div>
 
           <!-- SLIDE 2: Track daily -->
           <div class="carousel-slide">
             <div class="slide-img-wrap"><img src="../images/How_it_works__track_daily.png" alt="Track daily"></div>
+            <div class="slide-copy">
+              <p class="slide-copy-text"><strong>2. Track daily</strong> Quick daily check-ins, streaks, craving logs, and money saved. Stay honest with yourself without it feeling like a chore.</p>
+            </div>
           </div>
 
-          <!-- SLIDE 3: See progress -->
+          <!-- SLIDE 3: See Progress -->
           <div class="carousel-slide">
             <div class="slide-img-wrap"><img src="../images/How_it_works__see_progress.png" alt="See progress"></div>
+            <div class="slide-copy">
+              <p class="slide-copy-text"><strong>3. See Progress</strong> Watch your brain, lungs, and heart recover in real time. Unlock milestones and achievements as you go.</p>
+            </div>
           </div>
 
-          <!-- SLIDE 4: Learn & reflect -->
+          <!-- SLIDE 4: Learn & Reflect -->
           <div class="carousel-slide">
             <div class="slide-img-wrap"><img src="../images/How_it_works__learn_and_reflect.png" alt="Learn and reflect"></div>
+            <div class="slide-copy">
+              <p class="slide-copy-text"><strong>4. Learn &amp; Reflect</strong> Daily lessons, meditations, journaling, and videos that help you understand your habits and actually change them.</p>
+            </div>
           </div>
 
           <!-- SLIDE 5: Get support -->
           <div class="carousel-slide">
             <div class="slide-img-wrap"><img src="../images/How_it_works__get_support.png" alt="Get support"></div>
+            <div class="slide-copy">
+              <p class="slide-copy-text"><strong>5. Get support</strong> AI chat, accountability buddies, peer groups, and access to Dr. Fred. You're never doing this alone.</p>
+            </div>
           </div>
 
-          <!-- SLIDE 6: Sustain progress -->
+          <!-- SLIDE 6: Sustain Progress -->
           <div class="carousel-slide">
             <div class="slide-img-wrap"><img src="../images/How_it_works__sustain_progress.png" alt="Sustain progress"></div>
+            <div class="slide-copy">
+              <p class="slide-copy-text"><strong>6. Sustain Progress</strong> Clear30 keeps working after day 30. Community, ongoing lessons, and feedback tools that make this a lifestyle, not just a challenge.</p>
+            </div>
           </div>
 
         </div><!-- /slides -->
