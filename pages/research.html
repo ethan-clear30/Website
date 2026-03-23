@@ -136,12 +136,17 @@
     /* ── Hero ── */
     .research-hero {
       padding: 80px 80px 100px;
+    }
+    .research-hero-content {
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
+      grid-template-columns: 1.2fr 0.8fr;
       gap: 80px;
       align-items: center;
+    }
+    .research-hero-left {
+      min-width: 0;
     }
 
     .research-hero-headline .research-hero-line1,
@@ -164,10 +169,11 @@
 
     .research-hero-body {
       font-family: 'Lexend', sans-serif;
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 400;
       line-height: 1.7;
-      color: #4a4a4a;
+      color: #575555;
+      margin-bottom: 32px;
     }
 
     .research-hero-body strong {
@@ -188,9 +194,8 @@
       grid-template-rows: auto auto;
       gap: 24px;
       width: 100%;
+      max-width: 420px;
       min-width: 0;
-      transform: scale(1.3);
-      transform-origin: center center;
       margin-left: auto;
       justify-self: end;
     }
@@ -549,6 +554,15 @@
       line-height: 1.2;
     }
 
+    .research-nih-body {
+      font-family: 'Lexend', sans-serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.5;
+      margin: 0;
+    }
+
     .research-nih-list {
       list-style: none;
       margin: 0;
@@ -589,6 +603,7 @@
       .research-nih-logo { top: 60px; left: 24px; }
       .research-nih-logo img { height: 72px; max-width: 140px; }
       .research-nih-heading { font-size: 36px; }
+      .research-nih-body { font-size: 18px; }
       .research-nih-list li { font-size: 18px; }
     }
 
@@ -999,10 +1014,11 @@
     }
 
     @media (max-width: 1024px) {
-      .research-hero {
+      .research-hero-content {
         grid-template-columns: 1fr;
         gap: 48px;
       }
+      .research-hero-left { max-width: 100%; }
       .research-hero-placeholder,
       .research-hero-collage { order: -1; }
       .research-hero-collage { grid-template-columns: 1fr; grid-template-rows: auto; gap: 20px; max-width: 100%; }
@@ -1101,11 +1117,12 @@
       </header>
 
       <section class="research-hero">
-        <div class="research-hero-text">
+        <div class="research-hero-content">
+          <div class="research-hero-text research-hero-left">
           <h1 class="research-hero-headline"><span class="research-hero-line1">The Most Research-</span><span class="research-hero-line2">Backed Cannabis</span><span class="research-hero-line3">Intervention Available</span></h1>
           <p class="research-hero-body">Built by a team that has published <strong>hundreds</strong> of peer-reviewed studies with tens of <strong>thousands</strong> of citations across addiction science, digital intervention, and cannabis research, and funded by the <strong>National Institutes of Health</strong>.</p>
-        </div>
-        <div class="research-hero-collage">
+          </div>
+          <div class="research-hero-collage">
           <div class="research-hero-collage-item research-hero-collage-item-1">
             <img src="../images/research_statistics1.png" alt="Reasons for Taking a Break">
           </div>
@@ -1114,6 +1131,7 @@
           </div>
           <div class="research-hero-collage-item research-hero-collage-item-3">
             <img src="../images/research_statistics3.png" alt="Clear30 Research Statistics">
+          </div>
           </div>
         </div>
       </section>
@@ -1143,13 +1161,6 @@
       </section>
 
       <section class="research-quote-section">
-        <div class="research-quote-wrap">
-          <p class="research-quote">
-            <span class="research-quote-mark">"</span>
-            This includes collaborations with teams at the University of Michigan and Harvard University, helping assess Clear30 as a scalable option for students and young adults navigating cannabis use.
-            <span class="research-quote-mark">"</span>
-          </p>
-        </div>
         <div class="research-logos-wrap">
           <p class="research-logos-label">Research partners</p>
           <div class="research-logos">
@@ -1192,11 +1203,7 @@
           <div class="research-nih-header">
             <h2 class="research-nih-heading">Funded by the National<br>Institutes of Health</h2>
           </div>
-          <ul class="research-nih-list">
-            <li><span>Clear30's development has been funded through the NIH and the National Institute on Drug Abuse, the gold standard in federal research funding. These grants are competitively reviewed and awarded to technologies with strong scientific foundations and real public health potential.</span></li>
-            <li><span>This funding has supported everything from building the core intervention to assembling the team of subject matter experts behind it. It's also funding the development of an adolescent version of Clear30, expanding support to even younger users who need it.</span></li>
-            <li><span>When you partner with Clear30, you're working with a program that's held to the same research standards as the institutions you already trust.</span></li>
-          </ul>
+          <p class="research-nih-body">Clear30 was built with a competitive NIH/NIDA SBIR grant. We've completed Phase 1, which included building the core app and developing an adolescent version. The same research team continues to guide the product today.</p>
         </div>
       </section>
 
@@ -1210,7 +1217,7 @@
                 <li>These advisors help ensure Clear30 is developed and evaluated in ways that align with established research, real-world clinical practice, and the needs of institutions supporting student and young adult well-being.</li>
                 <li>Their involvement strengthens Clear30 as a responsible, evidence-informed partner for universities and health organizations.</li>
               </ul>
-              <a href="partner-with-us.html" class="research-advisors-cta">Contact our team</a>
+              <a href="book-demo.html" class="research-advisors-cta">Contact our team</a>
             </div>
             <div class="research-advisors-image">
               <img src="../images/Research_Fred_Header_Image.png" alt="Dr. Fred Muench - Clear30 Scientific and Clinical Advisors">

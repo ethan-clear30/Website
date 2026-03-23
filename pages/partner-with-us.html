@@ -481,11 +481,19 @@
       overflow: hidden;
     }
 
-    .action-video-wrap video {
+    .action-video-wrap video,
+    .action-video-wrap iframe {
       width: 100%;
       height: 100%;
-      object-fit: contain;
       display: block;
+    }
+
+    .action-video-wrap video {
+      object-fit: contain;
+    }
+
+    .action-video-wrap iframe {
+      border: none;
     }
 
     /* Why Clear30 Section */
@@ -920,6 +928,59 @@
       color: #80C97A;
     }
 
+    /* Coming Soon modal */
+    .coming-soon-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .coming-soon-overlay.is-open {
+      display: flex;
+    }
+    .coming-soon-modal {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 48px 40px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+    }
+    .coming-soon-modal h3 {
+      font-family: 'Lexend', sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+    }
+    .coming-soon-modal p {
+      font-family: 'Lexend', sans-serif;
+      font-size: 16px;
+      color: #575555;
+      margin-bottom: 24px;
+    }
+    .coming-soon-modal .coming-soon-close {
+      font-family: 'Lexend', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #FFFFFF;
+      background: linear-gradient(90deg, #80C97A 0%, #5BB4A9 100%);
+      border: none;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .coming-soon-modal .coming-soon-close:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(91, 180, 169, 0.4);
+    }
+
     @media (max-width: 1024px) {
       .header { padding: 0 32px; }
       .header-content {
@@ -1242,7 +1303,7 @@
         <div class="partner-card">
           <h3>Employers</h3>
           <p class="partner-card-desc">Evidence-based cannabis reduction support for employees.</p>
-          <a href="#">Learn more</a>
+          <a href="#" class="employers-coming-soon-trigger" id="employers-coming-soon">Learn more</a>
         </div>
         <div class="partner-card">
           <h3>States</h3>
@@ -1279,10 +1340,7 @@
         <h2 class="action-headline">See Clear30 in Action</h2>
         <p class="action-subtitle">How we're helping institutions tackle the cannabis crisis — in under two minutes.</p>
         <div class="action-video-wrap">
-          <video controls playsinline preload="metadata" poster="">
-            <source src="../images/B2B%20Website%20Video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+          <iframe src="https://www.youtube.com/embed/cV3x-gPicuU" title="Clear30 in Action" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
     </section>
@@ -1400,6 +1458,42 @@
 
       window.addEventListener('scroll', updateHeader, { passive: true });
       updateHeader();
+    })();
+  </script>
+
+  <div class="coming-soon-overlay" id="coming-soon-overlay" aria-hidden="true">
+    <div class="coming-soon-modal">
+      <h3>Coming Soon</h3>
+      <p>Employer partnerships are on the way. Check back soon!</p>
+      <button type="button" class="coming-soon-close" id="coming-soon-close">Got it</button>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var overlay = document.getElementById('coming-soon-overlay');
+      var trigger = document.getElementById('employers-coming-soon');
+      var closeBtn = document.getElementById('coming-soon-close');
+      function openModal() {
+        overlay.classList.add('is-open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal() {
+        overlay.classList.remove('is-open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal();
+      });
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) closeModal();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+      });
     })();
   </script>
 

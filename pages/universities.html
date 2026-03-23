@@ -742,7 +742,7 @@
 
       .approach-heading {
         font-family: "Lexend", sans-serif;
-        font-size: 36px;
+        font-size: 48px;
         font-weight: 600;
         background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
         -webkit-background-clip: text;
@@ -848,7 +848,7 @@
         }
       }
 
-      /* ── Partnership Options Section ── */
+      /* ── How the partnership works Section ── */
       .partnership-section {
         position: relative;
         z-index: 1;
@@ -857,14 +857,14 @@
       }
 
       .partnership-inner {
-        max-width: 560px;
+        max-width: 860px;
         margin: 0 auto;
         text-align: center;
       }
 
       .partnership-heading {
         font-family: "Lexend", sans-serif;
-        font-size: 36px;
+        font-size: 48px;
         font-weight: 600;
         background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
         -webkit-background-clip: text;
@@ -886,40 +886,25 @@
       .partnership-cards {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 24px;
         margin-bottom: 40px;
-        padding-left: 28px;
         overflow: visible;
       }
 
       .partnership-card {
-        position: relative;
         display: flex;
-        align-items: flex-start;
-        gap: 0;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
         text-align: left;
-        background: #ffffff;
-        border-radius: 24px;
-        padding: 24px 24px 24px 36px;
-        border: 1px solid rgba(128, 201, 122, 0.2);
-        box-shadow:
-          0 4px 20px rgba(0, 0, 0, 0.06),
-          0 2px 8px rgba(0, 0, 0, 0.04);
-        transition: box-shadow 0.3s ease;
-      }
-
-      .partnership-card:hover {
-        box-shadow: 0 8px 32px rgba(91, 180, 169, 0.15);
+        width: 100%;
       }
 
       .partnership-card-num {
-        position: absolute;
-        left: -20px;
-        top: 45%;
-        transform: translateY(-50%);
         flex-shrink: 0;
-        width: 40px;
-        height: 40px;
+        width: 64px;
+        height: 64px;
         border-radius: 50%;
         border: 2px solid transparent;
         background:
@@ -931,14 +916,32 @@
         align-items: center;
         justify-content: center;
         font-family: "Lexend", sans-serif;
-        font-size: 16px;
+        font-size: 22px;
         font-weight: 600;
         color: #80c97a;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+
+      .partnership-card-content {
+        flex: 0 1 680px;
+        min-width: 0;
+        background: #ffffff;
+        border-radius: 24px;
+        padding: 28px 32px;
+        border: 1px solid rgba(128, 201, 122, 0.2);
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.06),
+          0 2px 8px rgba(0, 0, 0, 0.04);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .partnership-card:hover .partnership-card-content {
+        box-shadow: 0 8px 32px rgba(91, 180, 169, 0.15);
       }
 
       .partnership-card-content h3 {
         font-family: "Lexend", sans-serif;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 600;
         background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
         -webkit-background-clip: text;
@@ -950,7 +953,7 @@
 
       .partnership-card-content p {
         font-family: "Lexend", sans-serif;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 400;
         color: #4a4a4a;
         line-height: 1.7;
@@ -1398,55 +1401,38 @@
         </div>
       </section>
 
-      <!-- ── Partnership Options Section ── -->
+      <!-- ── How the partnership works Section ── -->
       <section class="partnership-section">
         <div class="partnership-inner">
-          <h2 class="partnership-heading">Partnership Options</h2>
+          <h2 class="partnership-heading">How the partnership works</h2>
           <p class="partnership-subtitle">
-            Choose a partnership model that matches your population, budget, and
-            reporting needs.
+            From setup to outcomes, we handle it all.
           </p>
           <div class="partnership-cards">
             <div class="partnership-card">
               <div class="partnership-card-num">1</div>
               <div class="partnership-card-content">
-                <h3>Licensing Clear30</h3>
+                <h3>License &amp; Customize</h3>
                 <p>
-                  Offer Clear30 free to the people you support with an unlimited
-                  license.
+                  Give every student free access to Clear30, customized with your school's resources and branding.
                 </p>
               </div>
             </div>
             <div class="partnership-card">
               <div class="partnership-card-num">2</div>
               <div class="partnership-card-content">
-                <h3>Voucher &amp; Code Deployment</h3>
+                <h3>Distribute</h3>
                 <p>
-                  Sponsor access only when someone engages. Users download the
-                  retail app and unlock full access with your code. Options
-                  include pay-per-user or an outcome-based plan where you only
-                  pay when users reduce use by at least 50%.
+                  Launch with pre-built distribution kits designed by the Clear30 team specifically for your university.
                 </p>
               </div>
             </div>
             <div class="partnership-card">
               <div class="partnership-card-num">3</div>
               <div class="partnership-card-content">
-                <h3>Data &amp; Research Collaboration</h3>
+                <h3>Outcome Reporting</h3>
                 <p>
-                  With consent, use anonymized, aggregated outcome and
-                  engagement data to evaluate impact, support research studies,
-                  or inform public policy decisions.
-                </p>
-              </div>
-            </div>
-            <div class="partnership-card">
-              <div class="partnership-card-num">4</div>
-              <div class="partnership-card-content">
-                <h3>Free Resources</h3>
-                <p>
-                  Publish ready-to-share tools and guides inside your existing
-                  portals or LMS.
+                  See how your students are engaging and improving. Visualize outcomes across your campus population.
                 </p>
               </div>
             </div>
