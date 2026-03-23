@@ -9,13 +9,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-family: 'Lexend', system-ui, sans-serif; }
+    html { font-family: 'Lexend', system-ui, sans-serif; overflow-x: hidden; }
     body {
       font-family: 'Lexend', system-ui, sans-serif;
       background-color: #FFFFFF;
       color: #000000;
       min-height: 100vh;
       margin: 0;
+      overflow-x: hidden;
     }
     .resource-wrapper {
       position: relative;
@@ -126,6 +127,11 @@
       margin: 16px 0; padding-left: 24px;
     }
     .resource-section-body li { margin-bottom: 8px; }
+    .resource-section-body img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
     .resource-not-found {
       background: #FFFFFF;
       border-radius: 20px;
@@ -161,7 +167,17 @@
       .resource-header { padding: 28px 24px; }
       .resource-section { padding: 24px 24px; }
       .resource-title { font-size: 28px; }
+      .resource-section-body { font-size: 16px; }
       .footer { padding: 48px 24px; }
+    }
+    @media (max-width: 480px) {
+      .header { padding: 0 16px; }
+      .resource-main { padding: 24px 16px 48px; }
+      .resource-header { padding: 20px 16px; }
+      .resource-section { padding: 20px 16px; }
+      .resource-title { font-size: 24px; }
+      .resource-subtitle { font-size: 16px; }
+      .resource-section-body ul, .resource-section-body ol { padding-left: 20px; }
     }
   </style>
 </head>

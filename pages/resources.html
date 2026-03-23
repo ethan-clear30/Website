@@ -9,13 +9,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-family: 'Lexend', system-ui, sans-serif; }
+    html { font-family: 'Lexend', system-ui, sans-serif; overflow-x: hidden; }
     body {
       font-family: 'Lexend', system-ui, sans-serif;
       background-color: #FFFFFF;
       color: #000000;
       min-height: 100vh;
       margin: 0;
+      overflow-x: hidden;
     }
 
     /* Gradient background - consistent with partner-with-us page */
@@ -140,6 +141,115 @@
     .header--mini .nav-links { display: none; }
     .header--mini .cta-button { display: none; }
     .header--mini .cta-button-mini { display: inline-block; }
+
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      margin-right: 8px;
+      border-radius: 8px;
+    }
+    .hamburger-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #1a1a1a;
+      border-radius: 1px;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.3s ease, opacity 0.3s ease;
+    }
+    .mobile-menu.open {
+      visibility: visible;
+      opacity: 1;
+    }
+    .mobile-menu-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    .mobile-menu-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(300px, 85vw);
+      background: #FFFFFF;
+      box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    .mobile-menu.open .mobile-menu-panel {
+      transform: translateX(0);
+    }
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mobile-menu-close {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #4a4a4a;
+    }
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-nav-links a {
+      font-family: 'Lexend', sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      color: #1a1a1a;
+      text-decoration: none;
+      padding: 14px 12px;
+      border-radius: 10px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .mobile-nav-links a:hover,
+    .mobile-nav-links a.active {
+      background: rgba(91, 180, 169, 0.12);
+      color: #5BB4A9;
+    }
+    .mobile-menu-cta {
+      margin-top: auto;
+      background: linear-gradient(90deg, #80C97A 0%, #5BB4A9 100%);
+      color: #FFFFFF;
+      padding: 14px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Lexend', sans-serif;
+      border-radius: 9999px;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(91, 180, 169, 0.3);
+    }
 
     /* ── Hero ── */
     .resources-hero {
@@ -470,6 +580,9 @@
     }
 
     @media (max-width: 1024px) {
+      .hamburger-btn { display: flex; }
+      .mobile-menu { display: block; }
+      .nav-links { display: none; }
       .resources-hero { grid-template-columns: 1fr; gap: 48px; }
       .resources-hero-image { order: -1; max-width: 100%; margin-left: 0; }
       .resources-hero-image-box { padding: 24px; border-radius: 40px; }
@@ -537,10 +650,32 @@
             <a href="research.html">Research</a>
             <a href="resources.html" class="active">Resources</a>
           </nav>
+          <button type="button" class="hamburger-btn" aria-label="Open menu" aria-expanded="false" id="hamburger-btn">
+            <span></span><span></span><span></span>
+          </button>
           <a href="https://apps.apple.com/us/app/clear30-quit-smoking-weed/id6476418203" class="cta-button" target="_blank" rel="noopener">Redeem your 3 day trial</a>
           <a href="https://apps.apple.com/us/app/clear30-quit-smoking-weed/id6476418203" class="cta-button-mini" target="_blank" rel="noopener">Try for free</a>
         </div>
       </header>
+
+      <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <div class="mobile-menu-backdrop" id="mobile-menu-backdrop"></div>
+        <div class="mobile-menu-panel">
+          <div class="mobile-menu-header">
+            <span class="logo-text">Menu</span>
+            <button type="button" class="mobile-menu-close" aria-label="Close menu" id="mobile-menu-close">×</button>
+          </div>
+          <nav class="mobile-nav-links">
+            <a href="main.html">Home</a>
+            <a href="how-it-works.html">How it works</a>
+            <a href="partner-with-us.html">Partner with us</a>
+            <a href="universities.html">Universities</a>
+            <a href="research.html">Research</a>
+            <a href="resources.html" class="active">Resources</a>
+          </nav>
+          <a href="https://apps.apple.com/us/app/clear30-quit-smoking-weed/id6476418203" class="mobile-menu-cta" target="_blank" rel="noopener">Try for free</a>
+        </div>
+      </div>
 
       <section class="resources-hero">
         <div>
@@ -579,17 +714,19 @@
   <script>
     (function() {
       const header = document.querySelector('.header');
-      function updateHeader() {
-        if (window.scrollY > 10) {
-          header.classList.add('header--mini');
-          document.body.style.paddingTop = header.offsetHeight + 'px';
-        } else {
-          header.classList.remove('header--mini');
-          document.body.style.paddingTop = '';
+      if (header) {
+        function updateHeader() {
+          if (window.scrollY > 10) {
+            header.classList.add('header--mini');
+            document.body.style.paddingTop = header.offsetHeight + 'px';
+          } else {
+            header.classList.remove('header--mini');
+            document.body.style.paddingTop = '';
+          }
         }
+        window.addEventListener('scroll', updateHeader, { passive: true });
+        updateHeader();
       }
-      window.addEventListener('scroll', updateHeader, { passive: true });
-      updateHeader();
 
       const RESOURCES = [{"id":"symptom-packet","title":"Clear30 Symptom Packet","subtitle":"63 pages of action cards, breathing guides, sleep routines, and more","thumbnail":"../images/Resources_Symptom_Packet.png","category":"student","priority":1},{"id":"journaling-pack","title":"Clear30 Journaling Packet","subtitle":"30 daily prompts to process cravings and build mental clarity","thumbnail":"../images/Resources_Journaling_Pack.png","category":"student","priority":2},{"id":"clear30-calendar","title":"Clear30 Calendar","subtitle":"A motivational day-tracking tool for your 30-day cannabis break","thumbnail":"../images/Resources_Clear30_calendar.png","category":"student","priority":3},{"id":"meditation-pack","title":"Meditation Packet","subtitle":"Cravings meditations to pause, reset, and ride the wave","thumbnail":"../images/Resources_Meditation_Pack.png","category":"student","priority":4},{"id":"acceptance","title":"Embrace Acceptance","subtitle":"Embrace Yourself, Let Go of Judgment, and Build Lasting Change","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+29+-+Acceptance.png","category":"blogs"},{"id":"accepting-discomfort","title":"Embrace Discomfort","subtitle":"Unlock Resilience on Your Clear30","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+18+-+Accepting+discomfort.png","category":"blogs"},{"id":"big-changes-takes-time","title":"Embrace the Journey Without Weed","subtitle":"Real Change Takes Time","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+23+-Big+Changes+Takes+Time.png","category":"blogs"},{"id":"blind-spots","title":"Uncovering Blind Spots","subtitle":"The Power of Feedback on Clear30","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+22+-+Blind+Spots.png","category":"blogs"},{"id":"celebration","title":"Finishing Clear30","subtitle":"Celebrate your Milestone!","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+30+-+Celebration.png","category":"custom"},{"id":"clear30-past-weed","title":"Clear30 Strategies Beyond Weed","subtitle":"Overcoming Vices with Clear30 Tools","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+25+-+Clear30+Past+Weed.png","category":"custom"},{"id":"coping","title":"Breathing and Creative Coping","subtitle":"Thriving Without Weed","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+20+-+Coping.png","category":"student"},{"id":"cravings-your-triggers","title":"Getting Through Weed Cravings","subtitle":"Best Tools and Strategies","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+2+-+cravings+-_+your+triggers.png","category":"student"},{"id":"curiosity-and-creativity","title":"Unlock Your Inner Einstein","subtitle":"Embrace Curiosity and Creativity on Clear30","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+24+-Curiosity+and+Creativity.png","category":"blogs"},{"id":"dealing-with-setbacks","title":"Navigating Setbacks","subtitle":"Building Resilience Beyond Clear30","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+26+-+Dealing+with+Setbacks.png","category":"student"},{"id":"distractions-hobbies-staying-busy","title":"Staying Busy Without Weed","subtitle":"Exploring New Hobbies and Distractions","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+7+-+distractions+_+hobbies+%2B+staying+busy.png","category":"student"},{"id":"environment","title":"Transforming Your Environment","subtitle":"To Make Stepping Back From Weed Easier","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+0+-+Environment.png","category":"student"},{"id":"environment-increase-productivity","title":"Creating a Productive Environment","subtitle":"Make it Easier to Get Things Done","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+0-+Environment+_+Increase+productivity.png","category":"blogs"},{"id":"execrise-physical-health-supplements","title":"Transform Your Weed Break","subtitle":"Leveraging Exercise & Supplements","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+5+-+Execrise+%2B+Physical+Health+(supplements).png","category":"student"},{"id":"fab","title":"Seeing Beyond Nostalgia","subtitle":"Understanding Fading Affect Bias on Clear30","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+27+-+FAB.png","category":"blogs"},{"id":"feeling-dull","title":"Finding Fulfillment Beyond Weed","subtitle":"Embrace Boredom for Growth","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+9+-+Feeling+Dull.png","category":"blogs"},{"id":"friends","title":"Navigating Friendships During Your Weed Break","subtitle":"Strengthen Bonds on Clear30","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+12+-+Friends.png","category":"blogs"},{"id":"growth-mindset","title":"Harnessing Growth","subtitle":"Transform Your Mindset During Clear30","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+15+-+Growth+Mindset.png","category":"blogs"},{"id":"identitiy","title":"Redefining Yourself on Clear30","subtitle":"Rethink Your Identity, Build Better Habits, and Create Lasting Change","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+14+-+Identitiy.png","category":"blogs"},{"id":"mental-health-potency-problems-the-weed-youve-been-smoking-biological-response-brain","title":"Finding Balance","subtitle":"Navigating Mental Health and Modern Cannabis","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+11-+mental+health+-_+Potency+%2B+problems+(the+weed+you_ve+Day+11+-+been+smoking)+%2B+biological+response+--_+brain.png","category":"blogs"},{"id":"mindfulness","title":"Mindfulness Without Weed","subtitle":"Simple Practices to Reduce Stress, Manage Urges, and Create Lasting Change","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+19+-+mindfulness.png","category":"student"},{"id":"moderation-vs-abstienece","title":"Navigating Life After Clear30","subtitle":"Choosing Your Next Path","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+28+-Moderation+vs.+Abstienece.png","category":"custom"},{"id":"motivation-discipline","title":"From Motivation to Persistence","subtitle":"Building Discipline on Clear30","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+16+-+Motivation+-_+Discipline.png","category":"blogs"},{"id":"noticing-early-wins-invisible-change","title":"Invisible Wins","subtitle":"Spot Early Progress and Stay Motivated on Your Weed Break","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+8+-+Noticing+Early+Wins+-+Invisible+Change.png","category":"blogs"},{"id":"positivity","title":"Harnessing Positivity for a Successful Weed Break","subtitle":"Learn Practical Tools to Overcome Cravings, Reframe Challenges, and Stay Motivated","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+13+-+Positivity.png","category":"blogs"},{"id":"reaching-out-involving-others","title":"Finding Support for a Successful Clear30","subtitle":"Stay Accountable and Set Yourself Up for Success with Help from Others","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+6+-+Reaching+out+%2B+Involving+others.png","category":"student"},{"id":"reflecting-on-past-use","title":"Reflecting on Your Weed Use","subtitle":"Reflect on Your Past, Clarify Your 'Why,' and Strengthen Your Commitment","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+21+-+Reflecting+on+Past+Use.png","category":"student"},{"id":"short-term-long-term-path-less-traveled","title":"Overcoming Instant Gratification on Your Clear30","subtitle":"Master Long-Term Growth Over Short-Term Temptations","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+10+-+Short+term+-_+long+term+(path+less+traveled).png","category":"blogs"},{"id":"the-monkey-mind","title":"Quiet Your Cravings","subtitle":"Understanding the Monkey Mind with Clear30","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+17+-+The+Monkey+Mind.png","category":"student"},{"id":"tutorial","title":"Clear30 Tutorial","subtitle":"How to make the most of your break","thumbnail":"","category":"custom"},{"id":"withdrawal-core-message","title":"Overcoming Weed Withdrawal","subtitle":"What to Expect and How to Manage It","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+1+-+Withdrawal+Core+Message.png","category":"student"},{"id":"your-why","title":"Finding Your \"Why\"","subtitle":"The Key to Successful Change","thumbnail":"https://m.clear30.org/guide_thumbnails/Day+3+-+Your+Why.png","category":"student"}];
 
@@ -708,6 +845,34 @@
 
       searchInput.addEventListener('keyup', function(e) {
         if (e.key === 'Enter') { searchQuery = this.value.trim(); currentPage = 1; render(); }
+      });
+
+      var hamburger = document.getElementById('hamburger-btn');
+      var mobileMenu = document.getElementById('mobile-menu');
+      var menuBackdrop = document.getElementById('mobile-menu-backdrop');
+      var menuClose = document.getElementById('mobile-menu-close');
+      function openMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.add('open');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        if (hamburger) hamburger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+      if (hamburger) hamburger.addEventListener('click', openMenu);
+      if (menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
+      if (menuClose) menuClose.addEventListener('click', closeMenu);
+      if (mobileMenu) mobileMenu.querySelectorAll('.mobile-nav-links a, .mobile-menu-cta').forEach(function(link) {
+        link.addEventListener('click', closeMenu);
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) closeMenu();
       });
 
       render();

@@ -14,6 +14,7 @@
       background: #fff;
       color: #111;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     .hero-gradient-wrapper {
@@ -106,6 +107,115 @@
     .header--mini .nav-links { display: none; }
     .header--mini .cta-button { display: none; }
     .header--mini .cta-button-mini { display: inline-block; }
+
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      margin-right: 8px;
+      border-radius: 8px;
+    }
+    .hamburger-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #1a1a1a;
+      border-radius: 1px;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.3s ease, opacity 0.3s ease;
+    }
+    .mobile-menu.open {
+      visibility: visible;
+      opacity: 1;
+    }
+    .mobile-menu-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    .mobile-menu-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(300px, 85vw);
+      background: #FFFFFF;
+      box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    .mobile-menu.open .mobile-menu-panel {
+      transform: translateX(0);
+    }
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mobile-menu-close {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #4a4a4a;
+    }
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-nav-links a {
+      font-family: 'Lexend', sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      color: #1a1a1a;
+      text-decoration: none;
+      padding: 14px 12px;
+      border-radius: 10px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .mobile-nav-links a:hover,
+    .mobile-nav-links a.active {
+      background: rgba(91, 180, 169, 0.12);
+      color: #5BB4A9;
+    }
+    .mobile-menu-cta {
+      margin-top: auto;
+      background: linear-gradient(90deg, #80C97A 0%, #5BB4A9 100%);
+      color: #FFFFFF;
+      padding: 14px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Lexend', sans-serif;
+      border-radius: 9999px;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(91, 180, 169, 0.3);
+    }
 
     /* ═══════════════════════════════════════
        HERO  — inherits gradient from hero-gradient-wrapper (matches main)
@@ -247,7 +357,7 @@
       max-width: 900px;
       border-radius: 36px;
       overflow: hidden;
-      margin-bottom: 12px;
+      margin-bottom: 0;
       position: relative;
     }
     .slide-img-wrap img {
@@ -255,18 +365,8 @@
       height: auto;
       display: block;
     }
-    /* Slide 1: crop bottom of image to hide "Clear30 starts with your why" paragraph */
-    .carousel-slide:nth-child(1) .slide-img-wrap {
-      max-height: 420px;
-    }
-    .carousel-slide:nth-child(1) .slide-img-wrap img {
-      object-fit: cover;
-      object-position: center top;
-      width: 100%;
-      height: 420px;
-    }
 
-    /* Slide copy: compact, supports the image—minimal so images shine */
+    /* Slide copy (removed from DOM; styles kept for reference) */
     .slide-copy {
       max-width: 440px;
       margin: 0 auto;
@@ -393,6 +493,9 @@
     }
 
     @media (max-width: 900px) {
+      .hamburger-btn { display: flex; }
+      .mobile-menu { display: block; }
+      .nav-links { display: none; }
       .steps-row { grid-template-columns: 1fr; }
       .step-arrow { display: none; }
     }
@@ -407,8 +510,6 @@
       .hero-title { font-size: 28px; margin-bottom: 24px; }
       .carousel-section { padding: 48px 20px 56px; }
       .carousel-slide { padding: 24px 20px 32px; min-height: auto; }
-      .carousel-slide:nth-child(1) .slide-img-wrap { max-height: 300px; }
-      .carousel-slide:nth-child(1) .slide-img-wrap img { height: 300px; }
       .slide-copy { max-width: 100%; padding: 0 8px; }
       .slide-copy-text { font-size: 13px; }
       .phone { width: 110px; }
@@ -489,10 +590,32 @@
         <a href="research.html">Research</a>
         <a href="resources.html">Resources</a>
       </nav>
+      <button type="button" class="hamburger-btn" aria-label="Open menu" aria-expanded="false" id="hamburger-btn">
+        <span></span><span></span><span></span>
+      </button>
       <a href="https://apps.apple.com/us/app/clear30-quit-smoking-weed/id6476418203" class="cta-button" target="_blank" rel="noopener">Redeem your 3 day trial</a>
       <a href="https://apps.apple.com/us/app/clear30-quit-smoking-weed/id6476418203" class="cta-button-mini" target="_blank" rel="noopener">Try for free</a>
     </div>
   </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-backdrop" id="mobile-menu-backdrop"></div>
+    <div class="mobile-menu-panel">
+      <div class="mobile-menu-header">
+        <span class="logo-text">Menu</span>
+        <button type="button" class="mobile-menu-close" aria-label="Close menu" id="mobile-menu-close">×</button>
+      </div>
+      <nav class="mobile-nav-links">
+        <a href="main.html">Home</a>
+        <a href="how-it-works.html" class="active">How it works</a>
+        <a href="partner-with-us.html">Partner with us</a>
+        <a href="universities.html">Universities</a>
+        <a href="research.html">Research</a>
+        <a href="resources.html">Resources</a>
+      </nav>
+      <a href="https://apps.apple.com/us/app/clear30-quit-smoking-weed/id6476418203" class="mobile-menu-cta" target="_blank" rel="noopener">Try for free</a>
+    </div>
+  </div>
 
   <section class="hero">
     <div class="hero-inner">
@@ -558,49 +681,31 @@
           <!-- SLIDE 1: Set intention -->
           <div class="carousel-slide">
             <div class="slide-img-wrap"><img src="../images/How_it_works__set_intention.png" alt="Set intention"></div>
-            <div class="slide-copy">
-              <p class="slide-copy-text"><strong>1. Set intention</strong> You define the goal. Clear30 asks what you want to change, why it matters, and builds a personalized program around your answer.</p>
-            </div>
           </div>
 
           <!-- SLIDE 2: Track daily -->
           <div class="carousel-slide">
             <div class="slide-img-wrap"><img src="../images/How_it_works__track_daily.png" alt="Track daily"></div>
-            <div class="slide-copy">
-              <p class="slide-copy-text"><strong>2. Track daily</strong> Quick daily check-ins, streaks, craving logs, and money saved. Stay honest with yourself without it feeling like a chore.</p>
-            </div>
           </div>
 
           <!-- SLIDE 3: See Progress -->
           <div class="carousel-slide">
             <div class="slide-img-wrap"><img src="../images/How_it_works__see_progress.png" alt="See progress"></div>
-            <div class="slide-copy">
-              <p class="slide-copy-text"><strong>3. See Progress</strong> Watch your brain, lungs, and heart recover in real time. Unlock milestones and achievements as you go.</p>
-            </div>
           </div>
 
           <!-- SLIDE 4: Learn & Reflect -->
           <div class="carousel-slide">
             <div class="slide-img-wrap"><img src="../images/How_it_works__learn_and_reflect.png" alt="Learn and reflect"></div>
-            <div class="slide-copy">
-              <p class="slide-copy-text"><strong>4. Learn &amp; Reflect</strong> Daily lessons, meditations, journaling, and videos that help you understand your habits and actually change them.</p>
-            </div>
           </div>
 
           <!-- SLIDE 5: Get support -->
           <div class="carousel-slide">
             <div class="slide-img-wrap"><img src="../images/How_it_works__get_support.png" alt="Get support"></div>
-            <div class="slide-copy">
-              <p class="slide-copy-text"><strong>5. Get support</strong> AI chat, accountability buddies, peer groups, and access to Dr. Fred. You're never doing this alone.</p>
-            </div>
           </div>
 
           <!-- SLIDE 6: Sustain Progress -->
           <div class="carousel-slide">
             <div class="slide-img-wrap"><img src="../images/How_it_works__sustain_progress.png" alt="Sustain progress"></div>
-            <div class="slide-copy">
-              <p class="slide-copy-text"><strong>6. Sustain Progress</strong> Clear30 keeps working after day 30. Community, ongoing lessons, and feedback tools that make this a lifestyle, not just a challenge.</p>
-            </div>
           </div>
 
         </div><!-- /slides -->
@@ -642,24 +747,27 @@
   <script>
     (function() {
       var header = document.querySelector('.header');
-      function updateHeader() {
-        if (window.scrollY > 10) {
-          header.classList.add('header--mini');
-          document.body.style.paddingTop = header.offsetHeight + 'px';
-        } else {
-          header.classList.remove('header--mini');
-          document.body.style.paddingTop = '';
+      if (header) {
+        function updateHeader() {
+          if (window.scrollY > 10) {
+            header.classList.add('header--mini');
+            document.body.style.paddingTop = header.offsetHeight + 'px';
+          } else {
+            header.classList.remove('header--mini');
+            document.body.style.paddingTop = '';
+          }
         }
+        window.addEventListener('scroll', updateHeader, { passive: true });
+        updateHeader();
       }
-      window.addEventListener('scroll', updateHeader, { passive: true });
-      updateHeader();
     })();
 
     (function() {
-      var cur = 0;
       var track = document.querySelector('.carousel-slides');
       var tabs  = document.querySelectorAll('.carousel-tab');
       var dots  = document.querySelectorAll('.carousel-dot');
+      if (!track) return;
+      var cur = 0;
       var timer;
       function go(n) {
         cur = Math.max(0, Math.min(n, 5));
