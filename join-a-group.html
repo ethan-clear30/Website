@@ -1,0 +1,82 @@
+<!DOCTYPE html><!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Fri Jan 16 2026 18:10:58 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain="clear30-site.webflow.io" data-wf-page="66d4ec0e9915d515de3928f6" data-wf-site="66ad08d3b8c70b65f11316e6" lang="en"><head><meta charset="utf-8"/><title>Clear30 - Join a Group</title><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="Webflow" name="generator"/><link href="webflow-assets/css/clear30-site.webflow.shared.2c513c4a6.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link href="https://fonts.gstatic.com" rel="preconnect"/><script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script><script type="text/javascript">WebFont.load({  google: {    families: ["Lexend:100,200,300,regular,500,600,700,800,900"]  }});</script><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script><link href="webflow-assets/66b39cd45c97647e4adaac77_Artboard%202.png" rel="shortcut icon" type="image/x-icon"/><link href="webflow-assets/66b39cd842a40749b991cc8d_Artboard%203.png" rel="apple-touch-icon"/><script defer src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-scrolldisable@1/scrolldisable.js"></script>
+<script>
+function getQueryParams() {
+  const params = {};
+  const queryString = window.location.search.substring(1);
+  const queryArray = queryString.split("&");
+
+  queryArray.forEach(query => {
+    const pair = query.split("=");
+    const key = decodeURIComponent(pair[0]);
+    const value = decodeURIComponent(pair[1] || "");
+    params[key] = value;
+  });
+
+  return params;
+} 
+</script>
+
+<script>
+
+async function downloadImage(
+  imageSrc,
+  nameOfDownload = 'my-image.jpeg',
+) {
+	console.log("downloading " + imageSrc);
+  const response = await fetch(imageSrc);
+  const blobImage = await response.blob();
+  const href = URL.createObjectURL(blobImage);
+  const anchorElement = document.createElement('a');
+  anchorElement.href = href;
+  anchorElement.download = nameOfDownload;
+  document.body.appendChild(anchorElement);
+  anchorElement.click();
+  document.body.removeChild(anchorElement);
+  window.URL.revokeObjectURL(href);
+}
+
+</script> <link rel=”canonical” href=”https://clear30.org/”/></head><body class="body"><div class="code w-embed w-script"><script>
+function isInstagramInAppBrowser() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    return ua.indexOf('Instagram') > -1;
+}
+
+// Use the function to get the parameters
+const queryParams = getQueryParams();
+
+// Wait for the DOM to be fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+  const introTextElement = document.getElementById("intro-text");
+  const referralCodeElement = document.querySelector(".referral-container");
+  const referralNoCodeElement = document.querySelector(".referral-container.no-code");
+  const groupCodeElement = document.getElementById("group-code");
+  
+  if (queryParams["group_id"]) {
+  	// Update intro text
+    if (queryParams["name"]) {
+      introTextElement.innerText = queryParams["name"] + " has invited you to join their Clear30 group!";
+    }
+    
+    // Add button handling
+    const button = document.getElementById("activate");
+    button.addEventListener("click", function(event) {
+      event.preventDefault();
+      if (isInstagramInAppBrowser()) {
+      	alert('To open this link, tap the three dots (...) in the top right corner and select "Open in Browser" or "Open in Safari/Chrome"');
+        return;
+      }
+      window.location.href = "clear30://?group_id=" + queryParams["group_id"];
+    });
+    
+    // Set group code text
+    groupCodeElement.innerText = "Group code: " + queryParams["group_id"]
+  } else {
+    if (referralCodeElement) {
+      referralCodeElement.style.display = "none";
+    }
+    if (referralNoCodeElement) {
+      referralNoCodeElement.style.display = "flex";
+    }
+  }
+});
+</script></div><div style="display:none;opacity:0" class="page-content"><div class="nav-bar-copy"><div fs-scrolldisable-element="when-visible" class="nav-menu"><a data-w-id="72393b0b-9e7b-c0c6-0588-2a460b634f70" href="#" class="close-button w-inline-block"><img src="webflow-assets/66aefff3716ef72443dcf51d_close-md-svgrepo-com.svg" loading="lazy" alt="Close button" class="close-image"/></a><div class="nav-menu-buttons"><a href="/" class="mobile-nav-link">Home</a><a href="/why-take-a-bareak-from-weed" class="mobile-nav-link">Why Break?</a><a href="/how-it-works" class="mobile-nav-link">How it works</a><a href="/videos" class="mobile-nav-link">Videos</a><a href="/about" class="mobile-nav-link">About</a><a href="/4-21" class="mobile-nav-link">4/21</a><a href="/white-label" class="mobile-nav-link">White label</a><a href="/promote-pack" class="mobile-nav-link">Cannabis Support Resources</a><a href="/guides" class="mobile-nav-link">Guides</a></div></div><div class="wide-container"><div class="nav-container"><a href="/" target="_blank" class="logo-container w-inline-block"><img src="webflow-assets/66ad1005d280661c80cab546_1024.png" loading="eager" sizes="(max-width: 1024px) 100vw, 1024px" srcset="webflow-assets/66ad1005d280661c80cab546_1024-p-500.png 500w, webflow-assets/66ad1005d280661c80cab546_1024-p-800.png 800w, webflow-assets/66ad1005d280661c80cab546_1024.png 1024w" alt="App logo" class="logo-image"/><div class="logo-text">Clear30</div></a></div></div></div><div class="section full"><div class="wide-container"><div class="card left auto"><div class="referral-container"><h2 class="heading-2 no-padding">Join a Clear30 group</h2><p id="intro-text" class="paragraph">Someone has invited you to join their Clear30 group!<br/></p><p class="paragraph"><span class="gradient">First</span>, download the Clear30 iOS app.<br/></p><a href="https://apps.apple.com/us/app/clear30/id6476418203" target="_blank" class="gradient-button no-top-padding w-button">Download</a><p class="paragraph"><span class="gradient">Second</span>, once you&#x27;ve completed the onboarding, click the &quot;Join group&quot; button below.<br/></p><a id="activate" href="#" class="gradient-button no-top-padding w-button">Join group</a><p id="group-code" class="paragraph paragraph-small padding-top">Group code: <br/></p></div><div class="referral-container no-code"><h2 class="heading-2 no-padding">Page inactive</h2><p class="paragraph">This page is no longer active.<br/></p></div></div></div></div></div><script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=66ad08d3b8c70b65f11316e6" type="text/javascript"></script><script src="webflow-assets/js/webflow.schunk.36b8fb49256177c8.js" type="text/javascript"></script><script src="webflow-assets/js/webflow.schunk.178a39e3adfb6734.js" type="text/javascript"></script><script src="webflow-assets/js/webflow.b1c25a06.56651569e7181708.js" type="text/javascript"></script></body></html>

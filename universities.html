@@ -1,0 +1,2026 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Universities - Clear30</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-family: "Lexend", system-ui, sans-serif;
+        overflow-x: hidden;
+      }
+      body {
+        font-family: "Lexend", system-ui, sans-serif;
+        background-color: #ffffff;
+        color: #000000;
+        min-height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
+      }
+      .universities-wrapper {
+        position: relative;
+        background: #ffffff;
+        min-height: 100vh;
+      }
+      .top-gradient-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(128, 201, 122, 0.18) 0%,
+          rgba(91, 180, 169, 0.14) 20%,
+          rgba(91, 180, 169, 0.11) 40%,
+          rgba(91, 180, 169, 0.08) 60%,
+          rgba(91, 180, 169, 0.05) 80%,
+          rgba(255, 255, 255, 0.04) 100%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+      .universities-content {
+        position: relative;
+        z-index: 1;
+        padding-bottom: 80px;
+        background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
+      }
+
+      /* ── Header ── */
+      .header {
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 100;
+        background: transparent;
+        padding: 0 80px;
+        box-sizing: border-box;
+        transition:
+          background 0.4s ease,
+          box-shadow 0.4s ease;
+      }
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 28px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 48px;
+        transition: padding 0.4s ease;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        text-decoration: none;
+        color: inherit;
+      }
+      .logo-icon {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+        border-radius: 10px;
+        display: block;
+      }
+      .logo-text {
+        font-family: "Lexend", sans-serif;
+        font-size: 22px;
+        font-weight: 600;
+        color: #1a1a1a;
+        letter-spacing: -0.02em;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 48px;
+        flex: 1;
+        justify-content: center;
+        padding: 0 24px;
+      }
+      .nav-links a {
+        font-family: "Lexend", sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        color: #4a4a4a;
+        text-decoration: none;
+        letter-spacing: 0.01em;
+        transition: color 0.2s ease;
+        white-space: nowrap;
+      }
+      .nav-links a:hover {
+        color: #5bb4a9;
+      }
+      .nav-links a.active {
+        color: #5bb4a9;
+      }
+      .cta-button {
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        color: #ffffff;
+        border: none;
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: "Lexend", sans-serif;
+        border-radius: 9999px;
+        cursor: pointer;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(91, 180, 169, 0.3);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+        flex-shrink: 0;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .cta-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(91, 180, 169, 0.4);
+        color: #ffffff;
+      }
+      .cta-button-mini {
+        display: none;
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        color: #ffffff;
+        border: none;
+        padding: 10px 22px;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: "Lexend", sans-serif;
+        border-radius: 9999px;
+        text-decoration: none;
+      }
+      .header--mini {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+        padding: 0 80px;
+      }
+      .header--mini .header-content {
+        padding: 16px 0;
+      }
+      .header--mini .nav-links {
+        display: none;
+      }
+      .header--mini .cta-button {
+        display: none;
+      }
+      .header--mini .cta-button-mini {
+        display: inline-block;
+      }
+
+      .hamburger-btn {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        margin-right: 8px;
+        border-radius: 8px;
+      }
+      .hamburger-btn span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: #1a1a1a;
+        border-radius: 1px;
+      }
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0.3s ease, opacity 0.3s ease;
+      }
+      .mobile-menu.open {
+        visibility: visible;
+        opacity: 1;
+      }
+      .mobile-menu-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+      }
+      .mobile-menu-panel {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(300px, 85vw);
+        background: #ffffff;
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      }
+      .mobile-menu.open .mobile-menu-panel {
+        transform: translateX(0);
+      }
+      .mobile-menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .mobile-menu-close {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #4a4a4a;
+      }
+      .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .mobile-nav-links a {
+        font-family: "Lexend", sans-serif;
+        font-size: 17px;
+        font-weight: 500;
+        color: #1a1a1a;
+        text-decoration: none;
+        padding: 14px 12px;
+        border-radius: 10px;
+        transition: background 0.2s ease, color 0.2s ease;
+      }
+      .mobile-nav-links a:hover,
+      .mobile-nav-links a.active {
+        background: rgba(91, 180, 169, 0.12);
+        color: #5bb4a9;
+      }
+      .mobile-menu-cta {
+        margin-top: auto;
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        color: #ffffff;
+        padding: 14px 20px;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: "Lexend", sans-serif;
+        border-radius: 9999px;
+        text-decoration: none;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(91, 180, 169, 0.3);
+      }
+
+      /* ── Hero ── */
+      .universities-hero {
+        padding: 48px 80px 120px;
+        background: linear-gradient(
+          to bottom,
+          transparent 0%,
+          rgba(255, 255, 255, 0.6) 50%,
+          #ffffff 100%
+        );
+      }
+      .universities-hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 40px;
+        overflow: visible;
+      }
+      .universities-hero-left {
+        flex: 0 0 480px;
+        max-width: 480px;
+        opacity: 0;
+        transform: translateY(48px);
+        animation: heroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+      }
+      .universities-logos {
+        opacity: 0;
+        transform: translateY(48px);
+        animation: heroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+      }
+      @keyframes heroReveal {
+        to { opacity: 1; transform: translateY(0); }
+      }
+      [data-scroll-reveal] {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      [data-scroll-reveal].scroll-reveal--visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .universities-hero-headline {
+        font-family: "Lexend", sans-serif;
+        font-size: 52px;
+        font-weight: 600;
+        line-height: 1.2;
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 24px;
+      }
+      .universities-hero-headline span {
+        display: block;
+      }
+      .universities-hero-body {
+        font-family: "Lexend", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.7;
+        color: #575555;
+        margin-bottom: 32px;
+      }
+      .universities-hero-btn {
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        color: #ffffff;
+        border: none;
+        padding: 14px 28px;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: "Lexend", sans-serif;
+        border-radius: 9999px;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(91, 180, 169, 0.3);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .universities-hero-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(91, 180, 169, 0.4);
+        color: #ffffff;
+      }
+      .universities-hero-stat {
+        font-family: "Lexend", sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        color: #767676;
+        margin-top: 24px;
+        line-height: 1.5;
+      }
+
+      /* ── Logo circles ── */
+      .universities-logos {
+        position: relative;
+        flex: 0 0 680px;
+        width: 680px;
+        height: 580px;
+        flex-shrink: 0;
+        overflow: visible;
+      }
+      .university-logo {
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 600;
+        color: #4a4a4a;
+        text-align: center;
+        padding: 10px;
+        will-change: left, top, opacity;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+      }
+      .university-logo:has(img) {
+        padding: 0;
+      }
+      .university-logo img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .university-logo--d3c {
+        background: #ffffff;
+        border: 2px solid #87ceeb;
+      }
+      .university-logo--grinnell {
+        background: #ffffff;
+      }
+      .university-logo--nih {
+        background: #ffffff;
+      }
+      .university-logo--dartmouth {
+        background: #ffffff;
+      }
+      .university-logo--m {
+        background: #b8e986;
+        color: #2d5a27;
+      }
+      .university-logo--michigan {
+        background: #00274c;
+        color: #ffcb05;
+      }
+      .university-logo--detroit {
+        background: #5bb4a9;
+        color: #ffffff;
+      }
+      .university-logo--harvard {
+        background: #ffffff;
+      }
+      .university-logo--black {
+        background: #1a1a1a;
+        color: #fff;
+      }
+
+      /* ── Bottom wave ── */
+      .bottom-wave-section {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 580px;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .bottom-wave-section .bottom-wave-svg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        min-height: 280px;
+      }
+
+      @media (max-width: 1024px) {
+        .hamburger-btn {
+          display: flex;
+        }
+        .mobile-menu {
+          display: block;
+        }
+        .nav-links {
+          display: none;
+        }
+        .universities-hero-content {
+          flex-direction: column;
+          text-align: center;
+        }
+        .universities-hero-left {
+          max-width: 100%;
+        }
+        .universities-logos {
+          order: -1;
+          width: 100%;
+          max-width: 480px;
+          height: 420px;
+          margin: 0 auto;
+        }
+      }
+      @media (max-width: 768px) {
+        .header,
+        .header--mini {
+          padding: 0 24px;
+        }
+        .header-content {
+          padding: 20px 0;
+        }
+        .universities-hero {
+          padding: 40px 24px 80px;
+        }
+        .universities-hero-headline {
+          font-size: 36px;
+          line-height: 1.2;
+        }
+        .university-logo {
+          width: 120px;
+          height: 120px;
+          font-size: 9px;
+        }
+        .universities-logos {
+          height: 360px;
+        }
+      }
+      /* ── Cannabis Cards Section ── */
+      .cannabis-section {
+        position: relative;
+        background: linear-gradient(
+          to bottom,
+          #ffffff 0%,
+          #f0f9f2 20%,
+          #e8f5e4 45%,
+          #e4f4ee 65%,
+          #e8f5e4 85%,
+          #eaf6eb 100%
+        );
+        padding: 48px 80px 64px;
+        z-index: 1;
+      }
+
+      .cannabis-inner {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .cannabis-title {
+        font-family: "Lexend", sans-serif;
+        font-size: 30px;
+        font-weight: 500;
+        line-height: 1.25;
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+      }
+
+      .cannabis-subtitle {
+        font-family: "Lexend", sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        color: #555;
+        margin-bottom: 28px;
+        line-height: 1.6;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      /* ── Individual card ── */
+      .card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 24px 20px 24px;
+        text-align: center;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+        cursor: default;
+        transition:
+          box-shadow 0.3s ease,
+          transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Hide description by default */
+      }
+
+      .card:hover {
+        box-shadow: 0 8px 32px rgba(91, 180, 169, 0.18);
+        transform: translateY(-4px);
+      }
+
+      /* Description hidden by default, shown on hover */
+      .card-desc {
+        font-family: "Lexend", sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #555;
+        line-height: 1.7;
+        text-align: center;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition:
+          max-height 0.4s ease,
+          opacity 0.3s ease,
+          margin-top 0.3s ease;
+        margin-top: 0;
+      }
+
+      .card:hover .card-desc {
+        max-height: 300px;
+        opacity: 1;
+        margin-top: 14px;
+      }
+
+      .card-title {
+        font-family: "Lexend", sans-serif;
+        font-size: 17px;
+        font-weight: 600;
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-top: 14px;
+        line-height: 1.3;
+      }
+
+      /* ── Orb ── */
+      .card-orb {
+        position: relative;
+        width: 96px;
+        height: 96px;
+        flex-shrink: 0;
+      }
+
+      .orb-ring {
+        position: absolute;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* Employers — #F07E85 → #F09D7A */
+      [data-orb="employers"] .orb-ring--3 {
+        width: 96px;
+        height: 96px;
+        background: radial-gradient(
+          circle,
+          rgba(240, 126, 133, 0.25) 0%,
+          rgba(240, 157, 122, 0.15) 100%
+        );
+      }
+      [data-orb="employers"] .orb-ring--2 {
+        width: 74px;
+        height: 74px;
+        background: radial-gradient(
+          circle,
+          rgba(240, 126, 133, 0.45) 0%,
+          rgba(240, 157, 122, 0.3) 100%
+        );
+      }
+      [data-orb="employers"] .orb-ring--1 {
+        width: 53px;
+        height: 53px;
+        background: linear-gradient(135deg, #f07e85 0%, #f09d7a 100%);
+      }
+
+      /* Insurers & Health Systems — #80C97A → #5BB4A9 */
+      [data-orb="insurers"] .orb-ring--3 {
+        width: 96px;
+        height: 96px;
+        background: radial-gradient(
+          circle,
+          rgba(128, 201, 122, 0.25) 0%,
+          rgba(91, 180, 169, 0.15) 100%
+        );
+      }
+      [data-orb="insurers"] .orb-ring--2 {
+        width: 74px;
+        height: 74px;
+        background: radial-gradient(
+          circle,
+          rgba(128, 201, 122, 0.45) 0%,
+          rgba(91, 180, 169, 0.3) 100%
+        );
+      }
+      [data-orb="insurers"] .orb-ring--1 {
+        width: 53px;
+        height: 53px;
+        background: linear-gradient(135deg, #80c97a 0%, #5bb4a9 100%);
+      }
+
+      /* Colleges & Universities — #AC70E9 → #7DAFC7 */
+      [data-orb="colleges"] .orb-ring--3 {
+        width: 96px;
+        height: 96px;
+        background: radial-gradient(
+          circle,
+          rgba(172, 112, 233, 0.25) 0%,
+          rgba(125, 175, 199, 0.15) 100%
+        );
+      }
+      [data-orb="colleges"] .orb-ring--2 {
+        width: 74px;
+        height: 74px;
+        background: radial-gradient(
+          circle,
+          rgba(172, 112, 233, 0.45) 0%,
+          rgba(125, 175, 199, 0.3) 100%
+        );
+      }
+      [data-orb="colleges"] .orb-ring--1 {
+        width: 53px;
+        height: 53px;
+        background: linear-gradient(135deg, #ac70e9 0%, #7dafc7 100%);
+      }
+
+      /* States & Public Health — #EEAC97 → #CB87E4 */
+      [data-orb="states"] .orb-ring--3 {
+        width: 96px;
+        height: 96px;
+        background: radial-gradient(
+          circle,
+          rgba(238, 172, 151, 0.25) 0%,
+          rgba(203, 135, 228, 0.15) 100%
+        );
+      }
+      [data-orb="states"] .orb-ring--2 {
+        width: 74px;
+        height: 74px;
+        background: radial-gradient(
+          circle,
+          rgba(238, 172, 151, 0.45) 0%,
+          rgba(203, 135, 228, 0.3) 100%
+        );
+      }
+      [data-orb="states"] .orb-ring--1 {
+        width: 53px;
+        height: 53px;
+        background: linear-gradient(135deg, #eeac97 0%, #cb87e4 100%);
+      }
+
+      @media (max-width: 768px) {
+        .cannabis-section {
+          padding: 40px 24px 56px;
+        }
+        .cannabis-title {
+          font-size: 24px;
+        }
+        .cards-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── Stats Card Section ── */
+      .stats-section {
+        position: relative;
+        z-index: 1;
+        padding: 0 0 100px;
+        background: #ffffff;
+      }
+
+      .stats-card {
+        width: 100%;
+        background: #ffffff;
+        border-radius: 0;
+        padding: 56px 80px;
+        box-shadow:
+          0 8px 40px rgba(0, 0, 0, 0.08),
+          0 2px 12px rgba(0, 0, 0, 0.04);
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 0;
+        align-items: stretch;
+        justify-items: center;
+      }
+
+      .stats-column {
+        padding: 0 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 380px;
+      }
+
+      .stats-column:not(:last-child) {
+        border-right: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .stats-number {
+        font-family: "Lexend", sans-serif;
+        font-size: 48px;
+        font-weight: 600;
+        line-height: 1.2;
+        margin-bottom: 16px;
+      }
+
+      .stats-number--green {
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stats-number--orange {
+        background: linear-gradient(90deg, #f07e85 0%, #f09d7a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stats-desc {
+        font-family: "Lexend", sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        color: #4a4a4a;
+        line-height: 1.7;
+      }
+
+      .stats-desc strong {
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+
+      @media (max-width: 768px) {
+        .stats-section {
+          padding: 0 0 80px;
+        }
+        .stats-card {
+          grid-template-columns: 1fr;
+          padding: 40px 24px;
+        }
+        .stats-column {
+          padding: 24px 0;
+          max-width: none;
+          border-right: none;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        .stats-column:last-child {
+          border-bottom: none;
+        }
+        .stats-number {
+          font-size: 40px;
+        }
+      }
+
+      /* ── The Clear30 Approach Section ── */
+      .approach-section {
+        position: relative;
+        z-index: 1;
+        background: #ffffff;
+        padding: 80px 80px 100px;
+      }
+
+      .approach-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+
+      .approach-heading {
+        font-family: "Lexend", sans-serif;
+        font-size: 48px;
+        font-weight: 600;
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 28px;
+        line-height: 1.25;
+      }
+
+      .approach-list {
+        list-style: none;
+        margin: 0 0 32px 0;
+        padding: 0;
+      }
+
+      .approach-list li {
+        font-family: "Lexend", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        color: #4a4a4a;
+        line-height: 1.7;
+        margin-bottom: 16px;
+        padding-left: 24px;
+        position: relative;
+      }
+
+      .approach-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 10px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #80c97a 0%, #5bb4a9 100%);
+      }
+
+      .approach-list li strong {
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+
+      .approach-cta {
+        display: inline-block;
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        color: #ffffff;
+        padding: 14px 28px;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: "Lexend", sans-serif;
+        border-radius: 9999px;
+        text-decoration: none;
+        box-shadow: 0 4px 16px rgba(91, 180, 169, 0.35);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .approach-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(91, 180, 169, 0.4);
+        color: #ffffff;
+      }
+
+      .approach-mockup {
+        width: 100%;
+        border-radius: 24px;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .approach-mockup-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+      }
+
+      @media (max-width: 1024px) {
+        .approach-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .approach-mockup {
+          order: -1;
+          max-height: 320px;
+        }
+        .approach-mockup-img {
+          object-fit: cover;
+          object-position: center top;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .approach-section {
+          padding: 60px 24px 80px;
+        }
+        .approach-heading {
+          font-size: 28px;
+        }
+        .approach-list li {
+          font-size: 15px;
+        }
+      }
+
+      /* ── How the partnership works Section ── */
+      .partnership-section {
+        position: relative;
+        z-index: 1;
+        background: #ffffff;
+        padding: 80px 80px 100px;
+      }
+
+      .partnership-inner {
+        max-width: 860px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .partnership-heading {
+        font-family: "Lexend", sans-serif;
+        font-size: 48px;
+        font-weight: 600;
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 16px;
+        line-height: 1.25;
+      }
+
+      .partnership-subtitle {
+        font-family: "Lexend", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        color: #4a4a4a;
+        line-height: 1.6;
+        margin-bottom: 48px;
+      }
+
+      .partnership-cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 40px;
+        overflow: visible;
+      }
+
+      .partnership-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        text-align: left;
+        width: 100%;
+      }
+
+      .partnership-card-num {
+        flex-shrink: 0;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        background:
+          linear-gradient(#ffffff, #ffffff) padding-box,
+          linear-gradient(135deg, #80c97a 0%, #5bb4a9 100%) border-box;
+        background-origin: padding-box, border-box;
+        background-clip: padding-box, border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Lexend", sans-serif;
+        font-size: 22px;
+        font-weight: 600;
+        color: #80c97a;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+
+      .partnership-card-content {
+        flex: 0 1 680px;
+        min-width: 0;
+        background: #ffffff;
+        border-radius: 24px;
+        padding: 28px 32px;
+        border: 1px solid rgba(128, 201, 122, 0.2);
+        box-shadow:
+          0 4px 20px rgba(0, 0, 0, 0.06),
+          0 2px 8px rgba(0, 0, 0, 0.04);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .partnership-card:hover .partnership-card-content {
+        box-shadow: 0 8px 32px rgba(91, 180, 169, 0.15);
+      }
+
+      .partnership-card-content h3 {
+        font-family: "Lexend", sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+
+      .partnership-card-content p {
+        font-family: "Lexend", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        color: #4a4a4a;
+        line-height: 1.7;
+      }
+
+      .partnership-cta {
+        display: inline-block;
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        color: #ffffff;
+        padding: 14px 28px;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: "Lexend", sans-serif;
+        border-radius: 9999px;
+        text-decoration: none;
+        box-shadow: 0 4px 16px rgba(91, 180, 169, 0.35);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .partnership-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(91, 180, 169, 0.4);
+        color: #ffffff;
+      }
+
+      /* ── Explore Resources Section ── */
+      .resources-section {
+        position: relative;
+        z-index: 1;
+        background: #ffffff;
+        padding: 80px 80px 100px;
+        text-align: center;
+      }
+
+      .resources-inner {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      .resources-heading {
+        font-family: "Lexend", sans-serif;
+        font-size: 36px;
+        font-weight: 600;
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 28px;
+        line-height: 1.25;
+      }
+
+      .resources-cta {
+        display: inline-block;
+        background: linear-gradient(90deg, #80c97a 0%, #5bb4a9 100%);
+        color: #ffffff;
+        padding: 14px 28px;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: "Lexend", sans-serif;
+        border-radius: 9999px;
+        text-decoration: none;
+        box-shadow: 0 4px 16px rgba(91, 180, 169, 0.35);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .resources-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(91, 180, 169, 0.4);
+        color: #ffffff;
+      }
+
+      @media (max-width: 768px) {
+        .partnership-section,
+        .resources-section {
+          padding: 60px 24px 80px;
+        }
+        .partnership-heading,
+        .resources-heading {
+          font-size: 28px;
+        }
+        .partnership-card {
+          flex-direction: column;
+          padding: 24px 20px;
+        }
+      }
+
+      /* ── Footer ── */
+      .footer {
+        background: #363636;
+        border-top: 1px solid #696969;
+        padding: 48px 80px;
+        color: #ffffff;
+        margin-top: 0;
+      }
+      .footer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+      .footer-brand {
+        font-family: "Lexend", sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0 0 12px;
+      }
+      .footer-links {
+        font-family: "Lexend", sans-serif;
+        font-size: 14px;
+        color: #9ca3af;
+        margin: 0 0 8px;
+      }
+      .footer-links a {
+        color: #9ca3af;
+        text-decoration: none;
+      }
+      .footer-links a:hover {
+        color: #ffffff;
+      }
+      .footer-copyright {
+        font-family: "Lexend", sans-serif;
+        font-size: 14px;
+        color: #9ca3af;
+        margin: 0;
+      }
+      .footer-social {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+      .footer-social a {
+        width: 24px;
+        height: 24px;
+        display: block;
+        color: #ffffff;
+      }
+      .footer-social a:hover {
+        opacity: 0.8;
+      }
+      .footer-social svg {
+        width: 24px;
+        height: 24px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="universities-wrapper">
+      <div class="top-gradient-overlay" aria-hidden="true"></div>
+      <div class="bottom-wave-section" aria-hidden="true">
+        <svg
+          class="bottom-wave-svg"
+          viewBox="0 0 1440 280"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <linearGradient id="waveGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+              <stop
+                offset="0%"
+                style="stop-color: #ffffff; stop-opacity: 0.95"
+              />
+              <stop
+                offset="30%"
+                style="stop-color: #e8f5e4; stop-opacity: 0.6"
+              />
+              <stop
+                offset="60%"
+                style="stop-color: #d6efe8; stop-opacity: 0.5"
+              />
+              <stop
+                offset="100%"
+                style="stop-color: #ffffff; stop-opacity: 0.9"
+              />
+            </linearGradient>
+          </defs>
+          <path
+            fill="url(#waveGrad)"
+            d="M0,140 Q360,80 720,140 T1440,140 L1440,280 L0,280 Z"
+          />
+        </svg>
+      </div>
+
+      <div class="universities-content">
+        <header class="header">
+          <div class="header-content">
+            <a href="main.html" class="logo">
+              <img src="images/PNG App Logo.png" alt="Clear30" class="logo-icon" />
+              <span class="logo-text">Clear30</span>
+            </a>
+            <nav class="nav-links">
+              <a href="main.html">Home</a>
+              <a href="how-it-works.html">How it works</a>
+              <a href="partner-with-us.html">Partner with us</a>
+              <a href="universities.html" class="active">Universities</a>
+              <a href="research.html">Research</a>
+              <a href="resources.html">Resources</a>
+            </nav>
+            <button type="button" class="hamburger-btn" aria-label="Open menu" aria-expanded="false" id="hamburger-btn">
+              <span></span><span></span><span></span>
+            </button>
+            <a
+              href="https://apps.apple.com/us/app/clear30-quit-smoking-weed/id6476418203"
+              class="cta-button"
+              target="_blank"
+              rel="noopener"
+              >Redeem your 3 day trial</a
+            >
+            <a
+              href="https://apps.apple.com/us/app/clear30-quit-smoking-weed/id6476418203"
+              class="cta-button-mini"
+              target="_blank"
+              rel="noopener"
+              >Try for free</a
+            >
+          </div>
+        </header>
+
+        <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+          <div class="mobile-menu-backdrop" id="mobile-menu-backdrop"></div>
+          <div class="mobile-menu-panel">
+            <div class="mobile-menu-header">
+              <span class="logo-text">Menu</span>
+              <button type="button" class="mobile-menu-close" aria-label="Close menu" id="mobile-menu-close">×</button>
+            </div>
+            <nav class="mobile-nav-links">
+              <a href="main.html">Home</a>
+              <a href="how-it-works.html">How it works</a>
+              <a href="partner-with-us.html">Partner with us</a>
+              <a href="universities.html" class="active">Universities</a>
+              <a href="research.html">Research</a>
+              <a href="resources.html">Resources</a>
+            </nav>
+            <a href="https://apps.apple.com/us/app/clear30-quit-smoking-weed/id6476418203" class="mobile-menu-cta" target="_blank" rel="noopener">Try for free</a>
+          </div>
+        </div>
+
+        <section class="universities-hero">
+          <div class="universities-hero-content">
+            <div class="universities-hero-left">
+              <h1 class="universities-hero-headline">
+                <span>Bring Clear30 to</span>
+                <span>Your Campus</span>
+              </h1>
+              <p class="universities-hero-body">
+                Support every student struggling with cannabis — not just the
+                ones who ask for help.
+              </p>
+              <a href="book-demo.html" class="universities-hero-btn">Request a demo</a>
+              <p class="universities-hero-stat">
+                *90% average reduction in cannabis use among committed users.
+              </p>
+            </div>
+
+            <div class="universities-logos" id="universities-logos">
+              <!-- PATH 1 (outer arc) — 5 circles -->
+              <div
+                class="university-logo university-logo--grinnell"
+                data-path="1"
+              >
+                <img
+                  src="images/universities/University logos/University_Amherst_college.png"
+                  alt="Amherst"
+                />
+              </div>
+              <div
+                class="university-logo university-logo--dartmouth"
+                data-path="1"
+              >
+                <img
+                  src="images/universities/University logos/University_Dartmouth.png"
+                  alt="Dartmouth"
+                />
+              </div>
+              <div class="university-logo university-logo--m" data-path="1">
+                <img
+                  src="images/universities/University logos/University_Michigan.png"
+                  alt="Michigan"
+                />
+              </div>
+              <div
+                class="university-logo university-logo--grinnell"
+                data-path="1"
+              >
+                <img
+                  src="images/universities/University logos/University_Vassar.png"
+                  alt="Vassar"
+                />
+              </div>
+              <div
+                class="university-logo university-logo--detroit"
+                data-path="1"
+              >
+                <img
+                  src="images/universities/University logos/University_Massart.png"
+                  alt="MassArt"
+                />
+              </div>
+              <!-- PATH 2 (inner arc) — 4 circles, travels in reverse -->
+              <div
+                class="university-logo university-logo--harvard"
+                data-path="2"
+              >
+                <img
+                  src="images/universities/University logos/University_Harvard.png"
+                  alt="Harvard"
+                />
+              </div>
+              <div class="university-logo university-logo--black" data-path="2">
+                <img src="images/universities/University logos/University_JMU.png" alt="JMU" />
+              </div>
+              <div class="university-logo university-logo--black" data-path="2">
+                <img src="images/universities/University logos/Universty_EIU.png" alt="EIU" />
+              </div>
+              <div class="university-logo university-logo--black" data-path="2">
+                <img src="images/universities/University logos/University_NIU.png" alt="NIU" />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ── Cannabis Cards Section ── -->
+      <section class="cannabis-section" data-scroll-reveal>
+        <div class="cannabis-inner">
+          <h2 class="cannabis-title">
+            Cannabis Use has Increased Dramatically…
+          </h2>
+          <p class="cannabis-subtitle">
+            Today's products are stronger, daily use is more common, and most
+            people still don't seek support.
+          </p>
+          <div class="cards-grid">
+            <div class="card" data-orb="employers">
+              <div class="card-orb">
+                <div class="orb-ring orb-ring--3"></div>
+                <div class="orb-ring orb-ring--2"></div>
+                <div class="orb-ring orb-ring--1"></div>
+              </div>
+              <h3 class="card-title">Employers</h3>
+              <p class="card-desc">
+                Increased cannabis use in employees is associated with higher
+                absenteeism and presenteeism (on-the-job impairment), higher
+                rates of mental health concerns and workplace accidents, rising
+                mental health claims, and lower overall productivity.
+              </p>
+            </div>
+
+            <div class="card" data-orb="insurers">
+              <div class="card-orb">
+                <div class="orb-ring orb-ring--3"></div>
+                <div class="orb-ring orb-ring--2"></div>
+                <div class="orb-ring orb-ring--1"></div>
+              </div>
+              <h3 class="card-title">Insurers &amp; Health Systems</h3>
+              <p class="card-desc">
+                Regular cannabis use is associated with
+                <strong>increased</strong> healthcare utilization and
+                <strong>long-term</strong> costs,
+                <strong>greater</strong> complexity from co-occurring mental
+                health conditions, and <strong>added strain</strong> on EAP and
+                behavioral health resources.
+              </p>
+            </div>
+
+            <div class="card" data-orb="colleges">
+              <div class="card-orb">
+                <div class="orb-ring orb-ring--3"></div>
+                <div class="orb-ring orb-ring--2"></div>
+                <div class="orb-ring orb-ring--1"></div>
+              </div>
+              <h3 class="card-title">Colleges &amp; Universities</h3>
+              <p class="card-desc">
+                Higher-risk cannabis use among students is associated with lower
+                academic performance, increased risk of academic withdrawal,
+                greater strain on campus counseling and student health services,
+                higher mental health burden, and more disciplinary issues.
+              </p>
+            </div>
+
+            <div class="card" data-orb="states">
+              <div class="card-orb">
+                <div class="orb-ring orb-ring--3"></div>
+                <div class="orb-ring orb-ring--2"></div>
+                <div class="orb-ring orb-ring--1"></div>
+              </div>
+              <h3 class="card-title">States &amp; Public Health</h3>
+              <p class="card-desc">
+                At a population level, regular cannabis use is associated with
+                rising Cannabis Use Disorder burden, increased pressure on
+                addiction and mental health service budgets, and persistent
+                access gaps for proven, confidential support.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Stats Card Section ── -->
+      <section class="stats-section" data-scroll-reveal>
+        <div class="stats-card">
+          <div class="stats-column">
+            <div class="stats-number stats-number--green">3x</div>
+            <p class="stats-desc">
+              Increase in the amount of
+              <strong>THC in cannabis flower</strong> from 1995 to 2014.
+            </p>
+          </div>
+          <div class="stats-column">
+            <div class="stats-number stats-number--orange">9.6%</div>
+            <p class="stats-desc">
+              of past-year cannabis users
+              <strong>received substance use treatment</strong>, despite the
+              significant consequences of daily use, similar to alcohol.
+            </p>
+          </div>
+          <div class="stats-column">
+            <div class="stats-number stats-number--green">20m+</div>
+            <p class="stats-desc">
+              Americans have <strong>Cannabis Use Disorder</strong>, with 17
+              million using daily and growing fast versus 14 million daily
+              alcohol users.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── The Clear30 Approach Section ── -->
+      <section class="approach-section" data-scroll-reveal>
+        <div class="approach-inner">
+          <div class="approach-content">
+            <h2 class="approach-heading">The Clear30 Approach</h2>
+            <ul class="approach-list">
+              <li>
+                <strong>Evidence-based</strong> cannabis reduction programs
+                grounded in clinical and research expertise
+              </li>
+              <li>
+                Confidential, self-guided <strong>support</strong> built to fit
+                different goals, patterns, and levels of use
+              </li>
+              <li>
+                Brief <strong>check-ins</strong> that reveal patterns and adapt
+                support over time
+              </li>
+              <li>
+                Guided tools that build insight and momentum — with
+                <strong>clear next steps</strong> when it matters
+              </li>
+              <li>
+                Aggregate <strong>reporting</strong> to support evaluation and
+                population-level understanding
+              </li>
+            </ul>
+            <a href="book-demo.html" class="approach-cta">Contact our team</a>
+          </div>
+          <div class="approach-mockup">
+            <img src="images/Universities-Iphones_mockup.png" alt="Clear30 app on phones" class="approach-mockup-img">
+          </div>
+        </div>
+      </section>
+
+      <!-- ── How the partnership works Section ── -->
+      <section class="partnership-section" data-scroll-reveal>
+        <div class="partnership-inner">
+          <h2 class="partnership-heading">How the partnership works</h2>
+          <p class="partnership-subtitle">
+            From setup to outcomes, we handle it all.
+          </p>
+          <div class="partnership-cards">
+            <div class="partnership-card">
+              <div class="partnership-card-num">1</div>
+              <div class="partnership-card-content">
+                <h3>License &amp; Customize</h3>
+                <p>
+                  Give every student free access to Clear30, customized with your school's resources and branding.
+                </p>
+              </div>
+            </div>
+            <div class="partnership-card">
+              <div class="partnership-card-num">2</div>
+              <div class="partnership-card-content">
+                <h3>Distribute</h3>
+                <p>
+                  Launch with pre-built distribution kits designed by the Clear30 team specifically for your university.
+                </p>
+              </div>
+            </div>
+            <div class="partnership-card">
+              <div class="partnership-card-num">3</div>
+              <div class="partnership-card-content">
+                <h3>Outcome Reporting</h3>
+                <p>
+                  See how your students are engaging and improving. Visualize outcomes across your campus population.
+                </p>
+              </div>
+            </div>
+          </div>
+          <a href="book-demo.html" class="partnership-cta">Request a demo</a>
+        </div>
+      </section>
+
+      <!-- ── Explore Resources Section ── -->
+      <section class="resources-section" data-scroll-reveal>
+        <div class="resources-inner">
+          <h2 class="resources-heading">
+            Explore free resources and more that we offer!
+          </h2>
+          <a href="resources.html" class="resources-cta">Click here</a>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      (function () {
+        /* ── Header shrink on scroll ── */
+        const header = document.querySelector(".header");
+        if (header) {
+          function updateHeader() {
+            if (window.scrollY > 10) {
+              header.classList.add("header--mini");
+              document.body.style.paddingTop = header.offsetHeight + "px";
+            } else {
+              header.classList.remove("header--mini");
+              document.body.style.paddingTop = "";
+            }
+          }
+          window.addEventListener("scroll", updateHeader, { passive: true });
+          updateHeader();
+        }
+
+        /* ══════════════════════════════════════════════
+       ANIMATION
+       ══════════════════════════════════════════════
+       Two paths, each defined as a Catmull-Rom spline.
+       Circles are evenly distributed (i / count) so they
+       can never bunch up — the gap is always exactly
+       1/count of the total path length.
+
+       LOOP_MS controls overall speed. Bigger = slower.
+       FADE_IN / FADE_OUT control the opacity ramps.
+    ═══════════════════════════════════════════════ */
+
+        const LOOP_MS = 28000; // ms for one full loop
+        const FADE_IN = 0.06; // fraction of path to fade in
+        const FADE_OUT = 0.1; // fraction of path to fade out (at the end)
+        const MIN_GAP_P1 = 165;
+        const MIN_GAP_P2 = 185;
+
+        /*
+         * Control points for the two arcs (x, y) in px,
+         * relative to the top-left of .universities-logos (680 × 580).
+         *
+         * Both paths start well off the right edge (x > 680) and
+         * end below the bottom edge (y > 580) so circles enter/exit cleanly.
+         *
+         * PATH 1: outer arc — higher entry, wider sweep
+         * PATH 2: inner arc — lower entry, tighter sweep, different x-band
+         *         to avoid collisions with PATH 1
+         */
+        /*
+         * Both paths follow the same diagonal sweep (top-right → bottom-left).
+         * PATH2 is offset ~160px perpendicular to the curve direction so the
+         * gap between the two lanes stays visually constant end-to-end.
+         *
+         * The sweep direction is roughly 45° down-left, so the perpendicular
+         * is ~45° down-right. Offsetting by (+d*sin45, +d*cos45) ≈ (+113, +113)
+         * shifts PATH2 consistently "below-right" of PATH1 at every point.
+         *
+         * Canvas: 680 × 580 px (overflow: visible so circles can exit cleanly)
+         */
+
+        // Master spine — both paths are derived from this
+        // Spine runs from top-right to bottom-left with a gentle diagonal arc.
+        // Canvas is 680×580 (overflow:visible). Circles are 160px diameter so
+        // min safe centre-to-centre on same path = ~175px.
+        // The screenshot shows PATH1 (outer/upper lane) entering top-right at ~y=150,
+        // sweeping down-left and exiting bottom. PATH2 (inner/lower lane) runs
+        // roughly 200px below-right of PATH1 throughout.
+        const SPINE = [
+          { x: 760, y: 80 }, // off-screen right, upper
+          { x: 620, y: 110 },
+          { x: 480, y: 180 },
+          { x: 350, y: 280 },
+          { x: 230, y: 390 },
+          { x: 130, y: 500 },
+          { x: 60, y: 610 }, // exits below bottom
+        ];
+
+        // Perpendicular offset distance between the two paths (px)
+        // 200px centre-to-centre = comfortable gap with 160px circles (40px clear air)
+        const LANE_GAP = 200;
+
+        // Offset each point of the spine perpendicularly to get PATH2.
+        // We approximate the local tangent from adjacent points.
+        function offsetSpine(pts, d) {
+          return pts.map((p, i) => {
+            const prev = pts[Math.max(0, i - 1)];
+            const next = pts[Math.min(pts.length - 1, i + 1)];
+            const tx = next.x - prev.x;
+            const ty = next.y - prev.y;
+            const len = Math.sqrt(tx * tx + ty * ty) || 1;
+            // perpendicular pointing "down-right" relative to the sweep
+            const nx = ty / len;
+            const ny = -tx / len;
+            return { x: p.x + nx * d, y: p.y + ny * d };
+          });
+        }
+
+        const PATH1_PTS = SPINE;
+        const PATH2_PTS = offsetSpine(SPINE, LANE_GAP);
+
+        /* ── Catmull-Rom sampler ── */
+        function crPoint(p0, p1, p2, p3, t) {
+          const t2 = t * t,
+            t3 = t2 * t;
+          return {
+            x:
+              0.5 *
+              (2 * p1.x +
+                (-p0.x + p2.x) * t +
+                (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * t2 +
+                (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * t3),
+            y:
+              0.5 *
+              (2 * p1.y +
+                (-p0.y + p2.y) * t +
+                (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * t2 +
+                (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * t3),
+          };
+        }
+
+        function buildSpline(pts, totalSamples) {
+          totalSamples = totalSamples || 800;
+          // ghost first / last
+          const e = [pts[0], ...pts, pts[pts.length - 1]];
+          const raw = [];
+          const segs = pts.length - 1;
+          for (let s = 0; s < segs; s++) {
+            const n = Math.ceil(totalSamples / segs);
+            for (let k = 0; k < n; k++) {
+              raw.push(crPoint(e[s], e[s + 1], e[s + 2], e[s + 3], k / n));
+            }
+          }
+          raw.push(pts[pts.length - 1]);
+
+          // cumulative arc-length
+          const len = [0];
+          for (let i = 1; i < raw.length; i++) {
+            const dx = raw[i].x - raw[i - 1].x;
+            const dy = raw[i].y - raw[i - 1].y;
+            len.push(len[i - 1] + Math.sqrt(dx * dx + dy * dy));
+          }
+          return { raw, len, total: len[len.length - 1] };
+        }
+
+        // arc-length parameterised lookup — t ∈ [0,1]
+        function splineAt(sp, t) {
+          const target = t * sp.total;
+          let lo = 0,
+            hi = sp.len.length - 1;
+          while (lo < hi - 1) {
+            const mid = (lo + hi) >> 1;
+            if (sp.len[mid] < target) lo = mid;
+            else hi = mid;
+          }
+          const frac =
+            sp.len[hi] - sp.len[lo] > 0
+              ? (target - sp.len[lo]) / (sp.len[hi] - sp.len[lo])
+              : 0;
+          return {
+            x: sp.raw[lo].x + (sp.raw[hi].x - sp.raw[lo].x) * frac,
+            y: sp.raw[lo].y + (sp.raw[hi].y - sp.raw[lo].y) * frac,
+          };
+        }
+
+        const SP1 = buildSpline(PATH1_PTS);
+        const SP2 = buildSpline(PATH2_PTS);
+
+        /* ── DOM ── */
+        const logos = document.getElementById("universities-logos");
+        const p1Els = [...logos.querySelectorAll('[data-path="1"]')];
+        const p2Els = [...logos.querySelectorAll('[data-path="2"]')];
+
+        // PATH1: t goes 0→1 (right-top → bottom-left), fade in at start, fade out at end
+        function opacityFwd(t) {
+          if (t < FADE_IN) return t / FADE_IN;
+          if (t > 1 - FADE_OUT) return Math.max(0, (1 - t) / FADE_OUT);
+          return 1;
+        }
+
+        // PATH2: t goes 1→0 (bottom-left → right), so fade in when t is near 1, fade out near 0
+        function opacityRev(t) {
+          const r = 1 - t; // r increases as the circle travels forward along reversed path
+          if (r < FADE_IN) return r / FADE_IN;
+          if (r > 1 - FADE_OUT) return Math.max(0, (1 - r) / FADE_OUT);
+          return 1;
+        }
+
+        function place(el, sp, t, reverse) {
+          t = ((t % 1) + 1) % 1;
+          const tLookup = reverse ? 1 - t : t;
+          const pt = splineAt(sp, tLookup);
+          el.style.left = pt.x + "px";
+          el.style.top = pt.y + "px";
+          el.style.opacity = reverse ? opacityRev(t) : opacityFwd(t);
+        }
+
+        //  Static layout for small screens
+        // quick layout pass so the row starts filled
+        function placeLaneStatic(els, sp, minGapPx, reverse, startOffset) {
+          // figure out how many logos can fit with the gap
+          const minStep = minGapPx / sp.total;
+          const maxVisible = Math.max(1, Math.floor(1 / minStep));
+          // if everything fits, space them evenly
+          if (els.length <= maxVisible) {
+            const evenStep = 1 / els.length;
+            els.forEach((el, i) =>
+              place(el, sp, (startOffset || 0) + i * evenStep, reverse),
+            );
+            return;
+          }
+
+          // otherwise, only show a fixed number of slots
+          const slotStep = 1 / maxVisible;
+          const beltLength = slotStep * els.length;
+          const head = 0;
+          els.forEach((el, i) => {
+            let pos = head - i * slotStep;
+            pos = pos % beltLength;
+            if (pos < 0) pos += beltLength;
+            if (pos < 1) {
+              place(el, sp, pos + (startOffset || 0), reverse);
+            } else {
+              el.style.opacity = 0;
+            }
+          });
+        }
+
+        // bottom row keeps the old spacing
+        function placeLaneStaticUniform(
+          els,
+          sp,
+          minGapPx,
+          reverse,
+          startOffset,
+        ) {
+          const evenStep = 1 / els.length;
+          const minStep = minGapPx / sp.total;
+          const step = Math.max(evenStep, minStep);
+          els.forEach((el, i) => {
+            place(el, sp, (startOffset || 0) + i * step, reverse);
+          });
+        }
+
+        // animated version of the same spacing rules
+        function placeLaneAnimated(
+          els,
+          sp,
+          minGapPx,
+          reverse,
+          ts,
+          startOffset,
+        ) {
+          const minStep = minGapPx / sp.total;
+          const maxVisible = Math.max(1, Math.floor(1 / minStep));
+          // if everything fits, just offset by time
+          if (els.length <= maxVisible) {
+            const prog = (ts % LOOP_MS) / LOOP_MS;
+            const evenStep = 1 / els.length;
+            els.forEach((el, i) =>
+              place(el, sp, prog + (startOffset || 0) + i * evenStep, reverse),
+            );
+            return;
+          }
+
+          // conveyor-belt style cycling when there are extra logos
+          const slotStep = 1 / maxVisible;
+          const beltLength = slotStep * els.length;
+          const prog = (ts % LOOP_MS) / LOOP_MS;
+          const head = prog * beltLength;
+          els.forEach((el, i) => {
+            let pos = head - i * slotStep;
+            pos = pos % beltLength;
+            if (pos < 0) pos += beltLength;
+            if (pos < 1) {
+              place(el, sp, pos + (startOffset || 0), reverse);
+            } else {
+              el.style.opacity = 0;
+            }
+          });
+        }
+
+        function placeStatic() {
+          placeLaneStatic(p1Els, SP1, MIN_GAP_P1, false, 0);
+          placeLaneStaticUniform(p2Els, SP2, MIN_GAP_P2, true, 0.1);
+        }
+
+        /* ── Main loop ── */
+        function tick(ts) {
+          if (window.innerWidth < 1024) {
+            placeStatic();
+            requestAnimationFrame(tick);
+            return;
+          }
+
+          const prog = (ts % LOOP_MS) / LOOP_MS;
+
+          placeLaneAnimated(p1Els, SP1, MIN_GAP_P1, false, ts, 0);
+
+          const p2Step = Math.max(1 / p2Els.length, MIN_GAP_P2 / SP2.total);
+          p2Els.forEach((el, i) =>
+            place(el, SP2, prog + 0.1 + i * p2Step, true),
+          );
+
+          requestAnimationFrame(tick);
+        }
+
+        // show positions immediately to avoid a flash on first frame
+        placeStatic();
+        requestAnimationFrame(tick);
+
+        var hamburger = document.getElementById("hamburger-btn");
+        var mobileMenu = document.getElementById("mobile-menu");
+        var menuBackdrop = document.getElementById("mobile-menu-backdrop");
+        var menuClose = document.getElementById("mobile-menu-close");
+        function openMenu() {
+          if (!mobileMenu) return;
+          mobileMenu.classList.add("open");
+          mobileMenu.setAttribute("aria-hidden", "false");
+          if (hamburger) hamburger.setAttribute("aria-expanded", "true");
+          document.body.style.overflow = "hidden";
+        }
+        function closeMenu() {
+          if (!mobileMenu) return;
+          mobileMenu.classList.remove("open");
+          mobileMenu.setAttribute("aria-hidden", "true");
+          if (hamburger) hamburger.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+        }
+        if (hamburger) hamburger.addEventListener("click", openMenu);
+        if (menuBackdrop) menuBackdrop.addEventListener("click", closeMenu);
+        if (menuClose) menuClose.addEventListener("click", closeMenu);
+        if (mobileMenu) mobileMenu.querySelectorAll(".mobile-nav-links a, .mobile-menu-cta").forEach(function (link) {
+          link.addEventListener("click", closeMenu);
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && mobileMenu && mobileMenu.classList.contains("open")) closeMenu();
+        });
+        var revealEls = document.querySelectorAll("[data-scroll-reveal]");
+        if (revealEls.length) {
+          if ("IntersectionObserver" in window) {
+            var revealObserver = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) entry.target.classList.add("scroll-reveal--visible");
+              });
+            }, { rootMargin: "0px 0px -80px 0px", threshold: 0.1 });
+            revealEls.forEach(function (el) { revealObserver.observe(el); });
+          } else {
+            revealEls.forEach(function (el) { el.classList.add("scroll-reveal--visible"); });
+          }
+        }
+      })();
+    </script>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>
+          <h2 class="footer-brand">Clear30.org</h2>
+          <p class="footer-links">
+            <a href="#">Privacy Policy</a> &nbsp;
+            <a href="#">Terms and Conditions</a>
+          </p>
+          <p class="footer-copyright">© Clear30 All Rights Reserved.</p>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/theclear30/" target="_blank" rel="noopener" aria-label="Instagram"
+            ><svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+              /></svg
+          ></a>
+          <a href="https://www.tiktok.com/@theclear30" target="_blank" rel="noopener" aria-label="TikTok"
+            ><svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"
+              /></svg
+          ></a>
+          <a href="https://x.com/TheClear30" target="_blank" rel="noopener" aria-label="X (Twitter)"
+            ><svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+              /></svg
+          ></a>
+          <a href="https://www.youtube.com/channel/UCRs-KH77I1nwKz-aN4DSh-A" target="_blank" rel="noopener" aria-label="YouTube"
+            ><svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+              /></svg
+          ></a>
+          <a href="https://www.facebook.com/theclear30/" target="_blank" rel="noopener" aria-label="Facebook"
+            ><svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+              /></svg
+          ></a>
+          <a href="https://www.reddit.com/r/TheClear30/" target="_blank" rel="noopener" aria-label="Reddit"
+            ><svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.88-7.004 4.88-3.874 0-7.004-2.186-7.004-4.88 0-.183.015-.366.043-.534a1.748 1.748 0 0 1-1.008-1.595c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12.619c.632 0 1.214.493 1.214 1.127a1.214 1.214 0 0 1-2.427 0c0-.634.582-1.127 1.214-1.127zm5.5 0c.632 0 1.214.493 1.214 1.127a1.214 1.214 0 0 1-2.427 0c0-.634.582-1.127 1.214-1.127zm-5.466 3.695a1.726 1.726 0 0 0 1.725-1.724 1.726 1.726 0 0 0-1.725-1.724 1.726 1.726 0 0 0-1.724 1.724 1.726 1.726 0 0 0 1.724 1.724zm5.5 0a1.726 1.726 0 0 0 1.725-1.724 1.726 1.726 0 0 0-1.725-1.724 1.726 1.726 0 0 0-1.724 1.724 1.726 1.726 0 0 0 1.724 1.724z"
+              /></svg
+          ></a>
+          <a href="https://www.linkedin.com/company/theclear30/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"
+            ><svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+              /></svg
+          ></a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

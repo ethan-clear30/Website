@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How it works - Clear30</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      font-family: 'Lexend', system-ui, sans-serif;
+      background: #fff;
+      color: #111;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .hero-gradient-wrapper {
+      background-color: #FFFFFF;
+      background-image: linear-gradient(180deg,
+        rgba(128, 201, 122, 0.4) 0%,
+        rgba(91, 180, 169, 0.2) 40%,
+        rgba(91, 180, 169, 0.1) 65%,
+        rgba(255, 255, 255, 0.15) 85%
+      );
+    }
+
+    /* ── Header (consistent with site) ── */
+    .header {
+      position: sticky; top: 0; left: 0; right: 0;
+      width: 100%;
+      z-index: 100;
+      background: transparent;
+      padding: 0 80px;
+      box-sizing: border-box;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+      transition: padding 0.4s ease;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      flex-shrink: 0; text-decoration: none; color: inherit;
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      object-fit: contain;
+      border-radius: 10px;
+      display: block;
+    }
+    .logo-text {
+      font-family: 'Lexend', sans-serif; font-size: 22px;
+      font-weight: 600; color: #1a1a1a; letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 48px;
+      flex: 1; justify-content: center; padding: 0 24px;
+    }
+    .nav-links a {
+      font-family: 'Lexend', sans-serif; font-size: 15px;
+      font-weight: 500; color: #4a4a4a; text-decoration: none;
+      letter-spacing: 0.01em; transition: color 0.2s ease; white-space: nowrap;
+    }
+    .nav-links a:hover { color: #5BB4A9; }
+    .nav-links a.active { color: #5BB4A9; }
+    .cta-button {
+      background: linear-gradient(90deg, #80C97A 0%, #5BB4A9 100%);
+      color: #FFFFFF; border: none; padding: 12px 24px;
+      font-size: 14px; font-weight: 600; font-family: 'Lexend', sans-serif;
+      border-radius: 9999px; cursor: pointer; white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(91, 180, 169, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      flex-shrink: 0; text-decoration: none; display: inline-block;
+    }
+    .cta-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(91, 180, 169, 0.4); color: #FFFFFF;
+    }
+    .cta-button-mini {
+      display: none;
+      background: linear-gradient(90deg, #80C97A 0%, #5BB4A9 100%);
+      color: #FFFFFF; border: none; padding: 10px 22px;
+      font-size: 14px; font-weight: 600; font-family: 'Lexend', sans-serif;
+      border-radius: 9999px; text-decoration: none;
+    }
+    .header--mini {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    .header--mini { padding: 0 80px; }
+    .header--mini .header-content { padding: 16px 0; }
+    .header--mini .logo-icon { width: 30px; height: 30px; }
+    .header--mini .logo-text { font-size: 20px; }
+    .header--mini .nav-links { display: none; }
+    .header--mini .cta-button { display: none; }
+    .header--mini .cta-button-mini { display: inline-block; }
+
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      margin-right: 8px;
+      border-radius: 8px;
+    }
+    .hamburger-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #1a1a1a;
+      border-radius: 1px;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.3s ease, opacity 0.3s ease;
+    }
+    .mobile-menu.open {
+      visibility: visible;
+      opacity: 1;
+    }
+    .mobile-menu-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    .mobile-menu-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(300px, 85vw);
+      background: #FFFFFF;
+      box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    .mobile-menu.open .mobile-menu-panel {
+      transform: translateX(0);
+    }
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mobile-menu-close {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #4a4a4a;
+    }
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-nav-links a {
+      font-family: 'Lexend', sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      color: #1a1a1a;
+      text-decoration: none;
+      padding: 14px 12px;
+      border-radius: 10px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .mobile-nav-links a:hover,
+    .mobile-nav-links a.active {
+      background: rgba(91, 180, 169, 0.12);
+      color: #5BB4A9;
+    }
+    .mobile-menu-cta {
+      margin-top: auto;
+      background: linear-gradient(90deg, #80C97A 0%, #5BB4A9 100%);
+      color: #FFFFFF;
+      padding: 14px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Lexend', sans-serif;
+      border-radius: 9999px;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(91, 180, 169, 0.3);
+    }
+
+    /* ═══════════════════════════════════════
+       HERO  — inherits gradient from hero-gradient-wrapper (matches main)
+    ═══════════════════════════════════════ */
+    .hero {
+      background: transparent;
+      padding: 40px 60px 48px;
+    }
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(48px);
+      animation: heroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+    }
+    @keyframes heroReveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    [data-scroll-reveal] {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    [data-scroll-reveal].scroll-reveal--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-eyebrow {
+      font-size: 13px; font-weight: 500;
+      color: #5a5a5a; letter-spacing: 0.01em;
+      margin-bottom: 8px;
+    }
+    .hero-title {
+      font-family: 'Lexend', sans-serif;
+      font-size: 36px; font-weight: 600;
+      letter-spacing: -0.02em; line-height: 1.2;
+      background: linear-gradient(90deg, #80C97A 0%, #5BB4A9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 32px;
+    }
+
+    /* 3-step grid with arrows */
+    .steps-row {
+      display: grid;
+      grid-template-columns: 1fr 72px 1fr 72px 1fr;
+      align-items: start;
+      gap: 0;
+      direction: ltr;
+    }
+    .step { text-align: center; padding: 0 8px; }
+
+    /* Step number images */
+    .step-num {
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-num-img {
+      max-width: 72px;
+      height: auto;
+      display: block;
+    }
+
+    .step-arrow {
+      display: flex; align-items: flex-start;
+      justify-content: center;
+      padding-top: 20px;
+    }
+
+    .step-title {
+      font-size: 16px; font-weight: 700;
+      color: #111; margin-bottom: 6px;
+    }
+    .step-desc {
+      font-size: 13px; font-weight: 400;
+      color: #555; line-height: 1.5;
+      max-width: 220px; margin: 0 auto;
+    }
+
+    /* ═══════════════════════════════════════
+       DIVIDER
+    ═══════════════════════════════════════ */
+    .divider {
+      height: 1px; background: #e2e2e2;
+    }
+
+    /* ═══════════════════════════════════════
+       CAROUSEL SECTION
+    ═══════════════════════════════════════ */
+    .carousel-section {
+      padding: 64px 60px 56px;
+    }
+    .carousel-inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .carousel-heading {
+      font-size: 28px; font-weight: 600;
+      color: #111; text-align: center;
+      line-height: 1.3; margin-bottom: 28px;
+    }
+
+    /* Tabs */
+    .carousel-tabs {
+      display: flex; flex-wrap: wrap;
+      justify-content: center;
+      gap: 0 4px;
+      margin-bottom: 24px;
+    }
+    .carousel-tab {
+      font-family: 'Lexend', sans-serif;
+      font-size: 15px; font-weight: 500;
+      color: #555; background: none; border: none;
+      cursor: pointer; padding: 9px 16px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.18s, border-color 0.18s;
+      white-space: nowrap;
+    }
+    .carousel-tab:hover { color: #5BB4A9; }
+    .carousel-tab.active {
+      color: #5BB4A9;
+      font-weight: 600;
+      border-bottom-color: #5BB4A9;
+    }
+
+    /* Track */
+    .carousel-track { overflow: hidden; }
+    .carousel-slides {
+      display: flex;
+      transition: transform 0.52s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* Each slide: image + compact copy */
+    .carousel-slide {
+      flex: 0 0 100%; min-width: 100%;
+      background: #fff;
+      border-radius: 56px;
+      overflow: hidden;
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 32px 48px 28px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    /* Slide image: rounded corners, full image display */
+    .slide-img-wrap {
+      width: 100%;
+      max-width: 900px;
+      border-radius: 36px;
+      overflow: hidden;
+      margin-bottom: 0;
+      position: relative;
+    }
+    .slide-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Slide copy (removed from DOM; styles kept for reference) */
+    .slide-copy {
+      max-width: 440px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .slide-copy-text {
+      font-family: 'Lexend', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: #555;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* status bar */
+    .pstatus {
+      background: #fff;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 5px 10px 3px;
+      font-size: 7.5px; font-weight: 700; color: #111;
+      font-family: 'Lexend', sans-serif;
+    }
+    .pstatus-icons { display: flex; gap: 2px; align-items: center; }
+
+    /* ─── Phone A: Your Why card stack ─── */
+    .pscreen-a {
+      background: #f0faf5;
+      padding: 10px 9px;
+      min-height: 254px;
+      font-family: 'Lexend', sans-serif;
+    }
+    .pa-card { border-radius: 10px; padding: 9px 11px; margin-bottom: 7px; }
+    .pa-card--green { background: linear-gradient(135deg, #48b87a, #38a898); color: #fff; }
+    .pa-card--green .pa-label { font-size: 6.5px; opacity: .8; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 3px; }
+    .pa-card--green .pa-val { font-size: 9.5px; font-weight: 600; }
+    .pa-card--white { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.09); display: flex; align-items: center; gap: 7px; }
+    .pa-icon { width: 26px; height: 26px; border-radius: 7px; flex-shrink: 0; background: linear-gradient(135deg, #48b87a, #38a898); display: flex; align-items: center; justify-content: center; }
+    .pa-card--white .pa-text { font-size: 9px; font-weight: 600; color: #111; }
+    .pa-card--orange { background: linear-gradient(135deg, #f97316, #fb923c); color: #fff; display: flex; align-items: center; gap: 7px; }
+    .pa-card--orange .pa-icon-o { width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0; background: rgba(255,255,255,.22); display: flex; align-items: center; justify-content: center; }
+    .pa-card--orange .pa-text { font-size: 9px; font-weight: 600; }
+
+    /* ─── Phone B ─── */
+    .pscreen-b { background: #fff; min-height: 258px; font-family: 'Lexend', sans-serif; }
+    .pb-head { padding: 9px 11px 6px; }
+    .pb-back { font-size: 15px; color: #48b87a; margin-bottom: 5px; }
+    .pb-q { font-size: 9.5px; font-weight: 700; color: #111; line-height: 1.4; margin-bottom: 4px; }
+    .pb-step { font-size: 6.5px; color: #aaa; margin-bottom: 6px; }
+    .pb-opt { display: flex; align-items: center; gap: 6px; padding: 5px 11px; border-bottom: 1px solid #f2f2f2; }
+    .pb-opt-icon { width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; }
+    .pb-opt-text { font-size: 7px; color: #333; font-weight: 500; line-height: 1.3; }
+
+    /* ─── Phone C: 75,331 ─── */
+    .pscreen-c { background: #fff; min-height: 276px; font-family: 'Lexend', sans-serif; }
+    .pc-head { padding: 8px 10px 4px; }
+    .pc-greeting { font-size: 7.5px; color: #888; font-weight: 500; }
+    .pc-big { font-size: 22px; font-weight: 700; color: #111; line-height: 1.1; }
+    .pc-sub { font-size: 6.5px; color: #555; margin-bottom: 7px; line-height: 1.4; }
+    .pc-stats { display: flex; gap: 5px; padding: 0 10px 6px; }
+    .pc-stat { flex: 1; background: #f2faf7; border-radius: 7px; padding: 5px 6px; }
+    .pc-stat-n { font-size: 11px; font-weight: 700; color: #111; }
+    .pc-stat-l { font-size: 5.5px; color: #777; font-weight: 500; }
+    .pc-rating { display: flex; align-items: center; gap: 3px; padding: 0 10px 5px; }
+    .pc-stars { font-size: 7.5px; color: #f59e0b; }
+    .pc-rtext { font-size: 6px; color: #888; }
+    .pc-intro { font-size: 6px; color: #444; padding: 0 10px 4px; line-height: 1.4; }
+    .pc-community { background: #eef9f4; margin: 0 8px 7px; border-radius: 8px; padding: 7px 8px; }
+    .pc-tag { font-size: 5.5px; font-weight: 700; color: #48b87a; background: #d0f0e0; border-radius: 4px; padding: 1px 5px; display: inline-block; margin-bottom: 3px; }
+    .pc-headline { font-size: 7px; font-weight: 700; color: #111; margin-bottom: 2px; }
+    .pc-body { font-size: 6px; color: #555; line-height: 1.4; }
+    .pc-btn { background: linear-gradient(90deg,#6dc46b,#4aafa4); color:#fff; font-family:'Lexend',sans-serif; font-size:6.5px; font-weight:600; text-align:center; padding:7px 10px; margin:0 8px 4px; border-radius:999px; }
+    .pc-link { text-align:center; font-size:6px; color:#48b87a; padding-bottom:5px; }
+
+    /* ─── Phone D: program builder ─── */
+    .pscreen-d { background: #fff; min-height: 264px; font-family: 'Lexend', sans-serif; }
+    .pd-header { background: linear-gradient(135deg,#48b87a,#38a898); padding: 9px 10px 8px; }
+    .pd-name { font-size: 8.5px; font-weight: 700; color:#fff; margin-bottom:1px; }
+    .pd-days { font-size:6.5px; color:rgba(255,255,255,.8); margin-bottom:8px; }
+    .pd-goals { display:flex; gap:4px; margin-bottom:7px; }
+    .pd-goal { flex:1; background:rgba(255,255,255,.18); border-radius:7px; padding:4px 3px; text-align:center; }
+    .pd-goal-icon { font-size:11px; margin-bottom:1px; }
+    .pd-goal-lbl { font-size:5px; color:rgba(255,255,255,.9); font-weight:600; }
+    .pd-savings { background:rgba(255,255,255,.15); border-radius:5px; padding:3px 6px; font-size:6.5px; color:#fff; font-weight:600; display:inline-block; }
+    .pd-body { padding:7px 10px 6px; }
+    .pd-copy { font-size:6.5px; color:#555; line-height:1.4; margin-bottom:6px; }
+    .pd-section { font-size:7px; font-weight:700; color:#111; margin-bottom:4px; }
+    .pd-prog { display:flex; align-items:center; gap:5px; margin-bottom:4px; }
+    .pd-prog-lbl { font-size:5.5px; color:#666; width:52px; flex-shrink:0; line-height:1.3; }
+    .pd-prog-track { flex:1; background:#eee; border-radius:3px; height:4px; overflow:hidden; }
+    .pd-prog-bar { height:100%; border-radius:3px; background:linear-gradient(90deg,#6dc46b,#4aafa4); }
+    .pd-build-btn { background:linear-gradient(90deg,#6dc46b,#4aafa4); color:#fff; font-family:'Lexend',sans-serif; font-size:6.5px; font-weight:600; text-align:center; padding:6px 10px; border-radius:999px; margin-top:6px; }
+
+    /* Carousel bottom dots / pagination bar */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding: 10px 18px 6px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 9999px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #d1d5db;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carousel-dot:hover {
+      background: #9ca3af;
+    }
+    .carousel-dot.active {
+      background: linear-gradient(90deg, #80C97A 0%, #5BB4A9 100%);
+      transform: scale(1.2);
+      box-shadow: 0 0 0 2px rgba(91, 180, 169, 0.3);
+    }
+
+    @media (max-width: 900px) {
+      .hamburger-btn { display: flex; }
+      .mobile-menu { display: block; }
+      .nav-links { display: none; }
+      .steps-row { grid-template-columns: 1fr; }
+      .step-arrow { display: none; }
+    }
+    @media (max-width: 680px) {
+      .footer { padding: 48px 24px; }
+      .header { padding: 0 24px; }
+      .header--mini { padding: 0 24px; }
+      .header--mini .nav-links { display: none; }
+      .header--mini .cta-button { display: none; }
+      .header--mini .cta-button-mini { display: inline-block; }
+      .hero { padding: 32px 20px 40px; }
+      .hero-title { font-size: 28px; margin-bottom: 24px; }
+      .carousel-section { padding: 48px 20px 56px; }
+      .carousel-slide { padding: 24px 20px 32px; min-height: auto; }
+      .slide-copy { max-width: 100%; padding: 0 8px; }
+      .slide-copy-text { font-size: 13px; }
+      .phone { width: 110px; }
+      .phone:nth-child(1) { left: calc(50% - 210px); }
+      .phone:nth-child(2) { left: calc(50% - 112px); }
+      .phone:nth-child(3) { left: calc(50% - 15px); }
+      .phone:nth-child(4) { left: calc(50% + 82px); }
+      .phones-stage { height: 250px; }
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: #363636;
+      border-top: 1px solid #696969;
+      padding: 48px 80px;
+      color: #FFFFFF;
+      margin-top: 0;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer-brand {
+      font-family: 'Lexend', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin: 0 0 12px;
+    }
+    .footer-links {
+      font-family: 'Lexend', sans-serif;
+      font-size: 14px;
+      color: #9ca3af;
+      margin: 0 0 8px;
+    }
+    .footer-links a { color: #9ca3af; text-decoration: none; }
+    .footer-links a:hover { color: #FFFFFF; }
+    .footer-copyright {
+      font-family: 'Lexend', sans-serif;
+      font-size: 14px;
+      color: #9ca3af;
+      margin: 0;
+    }
+    .footer-social {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .footer-social a {
+      width: 24px;
+      height: 24px;
+      display: block;
+      color: #FFFFFF;
+    }
+    .footer-social a:hover { opacity: 0.8; }
+    .footer-social svg { width: 24px; height: 24px; display: block; }
+  </style>
+</head>
+<body>
+
+  <div class="hero-gradient-wrapper">
+  <header class="header">
+    <div class="header-content">
+      <a href="main.html" class="logo">
+        <img src="images/PNG App Logo.png" alt="Clear30" class="logo-icon">
+        <span class="logo-text">Clear30</span>
+      </a>
+      <nav class="nav-links">
+        <a href="main.html">Home</a>
+        <a href="how-it-works.html" class="active">How it works</a>
+        <a href="partner-with-us.html">Partner with us</a>
+        <a href="universities.html">Universities</a>
+        <a href="research.html">Research</a>
+        <a href="resources.html">Resources</a>
+      </nav>
+      <button type="button" class="hamburger-btn" aria-label="Open menu" aria-expanded="false" id="hamburger-btn">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="https://apps.apple.com/us/app/clear30-quit-smoking-weed/id6476418203" class="cta-button" target="_blank" rel="noopener">Redeem your 3 day trial</a>
+      <a href="https://apps.apple.com/us/app/clear30-quit-smoking-weed/id6476418203" class="cta-button-mini" target="_blank" rel="noopener">Try for free</a>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-backdrop" id="mobile-menu-backdrop"></div>
+    <div class="mobile-menu-panel">
+      <div class="mobile-menu-header">
+        <span class="logo-text">Menu</span>
+        <button type="button" class="mobile-menu-close" aria-label="Close menu" id="mobile-menu-close">×</button>
+      </div>
+      <nav class="mobile-nav-links">
+        <a href="main.html">Home</a>
+        <a href="how-it-works.html" class="active">How it works</a>
+        <a href="partner-with-us.html">Partner with us</a>
+        <a href="universities.html">Universities</a>
+        <a href="research.html">Research</a>
+        <a href="resources.html">Resources</a>
+      </nav>
+      <a href="https://apps.apple.com/us/app/clear30-quit-smoking-weed/id6476418203" class="mobile-menu-cta" target="_blank" rel="noopener">Try for free</a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">How Clear30 works</p>
+      <h1 class="hero-title">Three steps to a clearer mind</h1>
+
+      <div class="steps-row">
+
+        <div class="step">
+          <div class="step-num"><img src="images/How_it_works_3.png" alt="Step 1" class="step-num-img"></div>
+          <h3 class="step-title">Set your intention</h3>
+          <p class="step-desc">Choose your goal: quit, cut back, or reset your relationship with weed.</p>
+        </div>
+
+        <div class="step-arrow">
+          <svg width="68" height="38" viewBox="0 0 68 38" fill="none">
+            <path d="M4 30 Q34 4 62 18" stroke="#68b8a8" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <path d="M54 12 L64 19 L53 24" stroke="#68b8a8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+
+        <div class="step">
+          <div class="step-num"><img src="images/How_it_works_2.png" alt="Step 2" class="step-num-img"></div>
+          <h3 class="step-title">Build your plan</h3>
+          <p class="step-desc">Get a personalized path with daily check-ins, progress tracking, and support tools.</p>
+        </div>
+
+        <div class="step-arrow">
+          <svg width="68" height="38" viewBox="0 0 68 38" fill="none">
+            <path d="M4 30 Q34 4 62 18" stroke="#68b8a8" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <path d="M54 12 L64 19 L53 24" stroke="#68b8a8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+
+        <div class="step">
+          <div class="step-num"><img src="images/How_it_works_1.png" alt="Step 3" class="step-num-img"></div>
+          <h3 class="step-title">Track &amp; grow</h3>
+          <p class="step-desc">Log daily, spot patterns, and build momentum one day at a time.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  </div><!-- end hero-gradient-wrapper -->
+
+  <div class="divider"></div>
+
+  <section class="carousel-section" data-scroll-reveal>
+    <div class="carousel-inner">
+
+      <div class="carousel-tabs">
+        <button class="carousel-tab active" data-slide="0">Set intention</button>
+        <button class="carousel-tab" data-slide="1">Track daily</button>
+        <button class="carousel-tab" data-slide="2">See progress</button>
+        <button class="carousel-tab" data-slide="3">Learn &amp; reflect</button>
+        <button class="carousel-tab" data-slide="4">Get support</button>
+        <button class="carousel-tab" data-slide="5">Sustain progress</button>
+      </div>
+
+      <div class="carousel-track">
+        <div class="carousel-slides">
+
+          <!-- SLIDE 1: Set intention -->
+          <div class="carousel-slide">
+            <div class="slide-img-wrap"><img src="images/How_it_works__set_intention.png" alt="Set intention"></div>
+          </div>
+
+          <!-- SLIDE 2: Track daily -->
+          <div class="carousel-slide">
+            <div class="slide-img-wrap"><img src="images/How_it_works__track_daily.png" alt="Track daily"></div>
+          </div>
+
+          <!-- SLIDE 3: See Progress -->
+          <div class="carousel-slide">
+            <div class="slide-img-wrap"><img src="images/How_it_works__see_progress.png" alt="See progress"></div>
+          </div>
+
+          <!-- SLIDE 4: Learn & Reflect -->
+          <div class="carousel-slide">
+            <div class="slide-img-wrap"><img src="images/How_it_works__learn_and_reflect.png" alt="Learn and reflect"></div>
+          </div>
+
+          <!-- SLIDE 5: Get support -->
+          <div class="carousel-slide">
+            <div class="slide-img-wrap"><img src="images/How_it_works__get_support.png" alt="Get support"></div>
+          </div>
+
+          <!-- SLIDE 6: Sustain Progress -->
+          <div class="carousel-slide">
+            <div class="slide-img-wrap"><img src="images/How_it_works__sustain_progress.png" alt="Sustain progress"></div>
+          </div>
+
+        </div><!-- /slides -->
+      </div><!-- /track -->
+
+      <div class="carousel-dots">
+        <button class="carousel-dot active" data-slide="0" aria-label="Slide 1"></button>
+        <button class="carousel-dot" data-slide="1" aria-label="Slide 2"></button>
+        <button class="carousel-dot" data-slide="2" aria-label="Slide 3"></button>
+        <button class="carousel-dot" data-slide="3" aria-label="Slide 4"></button>
+        <button class="carousel-dot" data-slide="4" aria-label="Slide 5"></button>
+        <button class="carousel-dot" data-slide="5" aria-label="Slide 6"></button>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <h2 class="footer-brand">Clear30.org</h2>
+        <p class="footer-links">
+          <a href="#">Privacy Policy</a> &nbsp; <a href="#">Terms and Conditions</a>
+        </p>
+        <p class="footer-copyright">© Clear30 All Rights Reserved.</p>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/theclear30/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://www.tiktok.com/@theclear30" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.youtube.com/channel/UCRs-KH77I1nwKz-aN4DSh-A" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://www.facebook.com/theclear30/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.reddit.com/r/TheClear30/" target="_blank" rel="noopener" aria-label="Reddit"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.88-7.004 4.88-3.874 0-7.004-2.186-7.004-4.88 0-.183.015-.366.043-.534a1.748 1.748 0 0 1-1.008-1.595c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12.619c.632 0 1.214.493 1.214 1.127a1.214 1.214 0 0 1-2.427 0c0-.634.582-1.127 1.214-1.127zm5.5 0c.632 0 1.214.493 1.214 1.127a1.214 1.214 0 0 1-2.427 0c0-.634.582-1.127 1.214-1.127zm-5.466 3.695a1.726 1.726 0 0 0 1.725-1.724 1.726 1.726 0 0 0-1.725-1.724 1.726 1.726 0 0 0-1.724 1.724 1.726 1.726 0 0 0 1.724 1.724zm5.5 0a1.726 1.726 0 0 0 1.725-1.724 1.726 1.726 0 0 0-1.725-1.724 1.726 1.726 0 0 0-1.724 1.724 1.726 1.726 0 0 0 1.724 1.724z"/></svg></a>
+        <a href="https://www.linkedin.com/company/theclear30/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      var header = document.querySelector('.header');
+      if (header) {
+        function updateHeader() {
+          if (window.scrollY > 10) {
+            header.classList.add('header--mini');
+            document.body.style.paddingTop = header.offsetHeight + 'px';
+          } else {
+            header.classList.remove('header--mini');
+            document.body.style.paddingTop = '';
+          }
+        }
+        window.addEventListener('scroll', updateHeader, { passive: true });
+        updateHeader();
+      }
+    })();
+
+    (function() {
+      var track = document.querySelector('.carousel-slides');
+      var tabs  = document.querySelectorAll('.carousel-tab');
+      var dots  = document.querySelectorAll('.carousel-dot');
+      if (!track) return;
+      var cur = 0;
+      var timer;
+      function go(n) {
+        cur = Math.max(0, Math.min(n, 5));
+        track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+        tabs.forEach(function(t, i) { t.classList.toggle('active', i === cur); });
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === cur); });
+        reset();
+      }
+      function next() { go(cur === 5 ? 0 : cur + 1); }
+      function start() { timer = setInterval(next, 7000); }
+      function reset() { clearInterval(timer); start(); }
+      start();
+      tabs.forEach(function(t) { t.addEventListener('click', function() { go(+this.dataset.slide); }); });
+      dots.forEach(function(d) { d.addEventListener('click', function() { go(+this.dataset.slide); }); });
+    })();
+
+    (function() {
+      var revealEls = document.querySelectorAll('[data-scroll-reveal]');
+      if (revealEls.length) {
+        if ('IntersectionObserver' in window) {
+          var revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) entry.target.classList.add('scroll-reveal--visible');
+            });
+          }, { rootMargin: '0px 0px -80px 0px', threshold: 0.1 });
+          revealEls.forEach(function(el) { revealObserver.observe(el); });
+        } else {
+          revealEls.forEach(function(el) { el.classList.add('scroll-reveal--visible'); });
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

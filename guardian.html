@@ -1,0 +1,66 @@
+<!DOCTYPE html><!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Fri Jan 16 2026 18:10:58 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain="clear30-site.webflow.io" data-wf-page="68dd5cba5f5337f9bd0f9620" data-wf-site="66ad08d3b8c70b65f11316e6" lang="en"><head><meta charset="utf-8"/><title>Clear30 - Guardian</title><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="Webflow" name="generator"/><link href="webflow-assets/css/clear30-site.webflow.shared.2c513c4a6.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link href="https://fonts.gstatic.com" rel="preconnect"/><script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script><script type="text/javascript">WebFont.load({  google: {    families: ["Lexend:100,200,300,regular,500,600,700,800,900"]  }});</script><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script><link href="webflow-assets/66b39cd45c97647e4adaac77_Artboard%202.png" rel="shortcut icon" type="image/x-icon"/><link href="webflow-assets/66b39cd842a40749b991cc8d_Artboard%203.png" rel="apple-touch-icon"/><script defer src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-scrolldisable@1/scrolldisable.js"></script>
+<script>
+function getQueryParams() {
+  const params = {};
+  const queryString = window.location.search.substring(1);
+  const queryArray = queryString.split("&");
+
+  queryArray.forEach(query => {
+    const pair = query.split("=");
+    const key = decodeURIComponent(pair[0]);
+    const value = decodeURIComponent(pair[1] || "");
+    params[key] = value;
+  });
+
+  return params;
+} 
+</script>
+
+<script>
+
+async function downloadImage(
+  imageSrc,
+  nameOfDownload = 'my-image.jpeg',
+) {
+	console.log("downloading " + imageSrc);
+  const response = await fetch(imageSrc);
+  const blobImage = await response.blob();
+  const href = URL.createObjectURL(blobImage);
+  const anchorElement = document.createElement('a');
+  anchorElement.href = href;
+  anchorElement.download = nameOfDownload;
+  document.body.appendChild(anchorElement);
+  anchorElement.click();
+  document.body.removeChild(anchorElement);
+  window.URL.revokeObjectURL(href);
+}
+
+</script> <link rel=”canonical” href=”https://clear30.org/”/></head><body class="body"><div class="code w-embed w-script"><script>
+// Use the function to get the parameters
+const queryParams = getQueryParams();
+
+// Wait for the DOM to be fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+  const introTextElement = document.getElementById("intro-text");
+  const shareLink = document.getElementById("share");
+  const referralCodeElement = document.querySelector(".referral-container");
+  const referralNoCodeElement = document.querySelector(".referral-container.no-code");
+  
+
+  if (queryParams["code"]) {
+    // Handle button
+    const button = document.getElementById("activate");
+    button.addEventListener("click", function(event) {
+      event.preventDefault();
+      window.location.href = "clear30://guardian?code=" + queryParams["code"];
+    });
+  } else {
+    if (referralCodeElement) {
+      referralCodeElement.style.display = "none";
+    }
+    if (referralNoCodeElement) {
+      referralNoCodeElement.style.display = "flex";
+    }
+  }
+});
+</script></div><div style="display:none;opacity:0" class="page-content"><div class="nav-bar-copy"><div fs-scrolldisable-element="when-visible" class="nav-menu"><a data-w-id="72393b0b-9e7b-c0c6-0588-2a460b634f70" href="#" class="close-button w-inline-block"><img src="webflow-assets/66aefff3716ef72443dcf51d_close-md-svgrepo-com.svg" loading="lazy" alt="Close button" class="close-image"/></a><div class="nav-menu-buttons"><a href="/" class="mobile-nav-link">Home</a><a href="/why-take-a-bareak-from-weed" class="mobile-nav-link">Why Break?</a><a href="/how-it-works" class="mobile-nav-link">How it works</a><a href="/videos" class="mobile-nav-link">Videos</a><a href="/about" class="mobile-nav-link">About</a><a href="/4-21" class="mobile-nav-link">4/21</a><a href="/white-label" class="mobile-nav-link">White label</a><a href="/promote-pack" class="mobile-nav-link">Cannabis Support Resources</a><a href="/guides" class="mobile-nav-link">Guides</a></div></div><div class="wide-container"><div class="nav-container"><a href="/" target="_blank" class="logo-container w-inline-block"><img src="webflow-assets/66ad1005d280661c80cab546_1024.png" loading="eager" sizes="(max-width: 1024px) 100vw, 1024px" srcset="webflow-assets/66ad1005d280661c80cab546_1024-p-500.png 500w, webflow-assets/66ad1005d280661c80cab546_1024-p-800.png 800w, webflow-assets/66ad1005d280661c80cab546_1024.png 1024w" alt="App logo" class="logo-image"/><div class="logo-text">Clear30</div></a></div></div></div><div class="section extra-top-padding"><div class="wide-container"><div class="card left auto"><div class="referral-container"><div class="row centered space-between"><h2 class="heading-2 no-padding"><strong>Clear30 Beta Program for Ages 16–17</strong></h2></div><div class="rich-text w-richtext"><p>We are currently testing a <strong>beta version of Clear30</strong>, a cannabis break and abstinence program designed specifically for <strong>16–17 year olds</strong>.</p><p>This beta version is <strong>not publicly available in the App Store</strong>. We are sharing private access with parents so they can decide whether to offer the program to their child. All features may not be active. </p><p><strong>How to Activate Clear30 16-17</strong></p><h3><strong>Step 1: Download the App</strong></h3><p>Download the <strong>Clear30 iOS app</strong> using the link below.</p><p><strong>Do not open the app after it is installed. See Step 2. </strong></p></div><a href="https://apps.apple.com/us/app/clear30/id6476418203" target="_blank" class="gradient-button no-top-padding w-button">Download</a><div class="rich-text w-richtext"><h3><strong>Step 2: Activate Adolescent Mode</strong></h3><p>After the app is downloaded, return to this page and click <strong>Activate</strong> below.</p><p>This step:</p><ul role="list"><li>Makes the program free</li><li>Activates the 16–17 year old (adolescent) version of Clear30</li></ul></div><a id="activate" href="https://clear30//school=umich" class="gradient-button no-top-padding w-button">Activate</a><div class="rich-text w-richtext"><p>After activation, your child can open the app and begin the program.</p><h1><strong>Note to Parents (Please Read Carefully)</strong></h1><ul role="list"><li>This is a <strong>beta test</strong>, not a public release. All features may not be active. <br/></li><li>Clear30 is designed to help teens take a <strong>structured break from cannabis</strong>, build awareness, and develop healthier habits.<br/></li><li>The app <strong>must be activated in the correct order</strong> for it to work properly.<br/></li><li>If the app is opened <strong>before clicking Activate</strong>, it will:<br/><ul role="list"><li>Not be free<br/></li><li>Not enter adolescent mode<br/></li></ul></li><li>If this happens, please <strong>delete the app and repeat the steps from the beginning</strong>.<br/></li><li>Parents control access to this beta program and can support their child’s participation at their own discretion.</li></ul></div></div><div class="referral-container no-code"><h2 class="heading-2 no-padding">Page inactive</h2><p class="paragraph">This page is no longer active.<br/></p></div></div></div></div></div><script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=66ad08d3b8c70b65f11316e6" type="text/javascript"></script><script src="webflow-assets/js/webflow.schunk.36b8fb49256177c8.js" type="text/javascript"></script><script src="webflow-assets/js/webflow.schunk.178a39e3adfb6734.js" type="text/javascript"></script><script src="webflow-assets/js/webflow.b1c25a06.56651569e7181708.js" type="text/javascript"></script></body></html>
