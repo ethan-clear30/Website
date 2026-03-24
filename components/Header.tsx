@@ -51,7 +51,7 @@ export default function Header() {
       <header className={`header${isMini ? ' header--mini' : ''}`}>
         <div className="header-content">
           <Link href="/" className="logo">
-            <img src="/images/PNG App Logo.png" alt="Clear30" className="logo-icon" />
+            <img src="/images/PNG App Logo.webp" alt="Clear30" className="logo-icon" />
             <span className="logo-text">Clear30</span>
           </Link>
           <nav className="nav-links">

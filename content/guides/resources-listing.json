@@ -3,7 +3,7 @@
     "id": "symptom-packet",
     "title": "Clear30 Symptom Packet",
     "subtitle": "63 pages of action cards, breathing guides, sleep routines, and more",
-    "thumbnail": "../images/Resources_Symptom_Packet.png",
+    "thumbnail": "../images/Resources_Symptom_Packet.webp",
     "category": "student",
     "priority": 1
   },
@@ -11,7 +11,7 @@
     "id": "journaling-pack",
     "title": "Clear30 Journaling Packet",
     "subtitle": "30 daily prompts to process cravings and build mental clarity",
-    "thumbnail": "../images/Resources_Journaling_Pack.png",
+    "thumbnail": "../images/Resources_Journaling_Pack.webp",
     "category": "student",
     "priority": 2
   },
@@ -19,7 +19,7 @@
     "id": "clear30-calendar",
     "title": "Clear30 Calendar",
     "subtitle": "A motivational day-tracking tool for your 30-day cannabis break",
-    "thumbnail": "../images/Resources_Clear30_calendar.png",
+    "thumbnail": "../images/Resources_Clear30_calendar.webp",
     "category": "student",
     "priority": 3
   },
@@ -27,7 +27,7 @@
     "id": "meditation-pack",
     "title": "Meditation Packet",
     "subtitle": "Cravings meditations to pause, reset, and ride the wave",
-    "thumbnail": "../images/Resources_Meditation_Pack.png",
+    "thumbnail": "../images/Resources_Meditation_Pack.webp",
     "category": "student",
     "priority": 4
   },
