@@ -1,0 +1,135 @@
+.external-page {
+  font-family: var(--font-lexend, 'Lexend', sans-serif);
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.external-poster-panel {
+  background: #1a1a1a;
+  padding: 24px 16px;
+  position: relative;
+}
+
+.external-poster-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.external-poster-item {
+  flex: 0 0 auto;
+  width: 160px;
+  text-align: center;
+}
+
+.external-poster-item img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.external-poster-item p {
+  font-size: 12px;
+  color: #ccc;
+  margin: 0 0 8px 0;
+}
+
+.external-download-btn {
+  background: none;
+  border: 1px solid #555;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  transition: background 0.2s;
+}
+
+.external-download-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.external-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  gap: 24px;
+}
+
+.external-screenshots {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.external-screenshots img {
+  max-height: 500px;
+  width: auto;
+  border-radius: 16px;
+}
+
+.external-screenshots img.smaller {
+  max-height: 420px;
+}
+
+.external-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 340px;
+}
+
+.external-instruction-button {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #6ee7b7, #3b82f6);
+  color: #000;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+  border: none;
+  cursor: default;
+}
+
+.external-outline-button {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  border: 1px solid #555;
+  cursor: default;
+}
+
+@media (max-width: 768px) {
+  .external-main {
+    flex-direction: column;
+    padding: 24px 16px;
+  }
+
+  .external-screenshots img {
+    max-height: 300px;
+  }
+
+  .external-screenshots img.smaller {
+    max-height: 260px;
+  }
+
+  .external-col {
+    align-items: center;
+    text-align: center;
+  }
+}
