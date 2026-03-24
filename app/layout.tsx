@@ -16,18 +16,18 @@ export const metadata: Metadata = {
     description:
       'Improve your relationship with cannabis. Take a 30-day break to reset and get clarity on your use.',
     url: 'https://clear30.org',
-    images: [{ url: '/images/og-image.png', width: 1200, height: 630 }],
+    images: [{ url: '/images/og-image.webp', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Clear30 - The Weed Break App',
     description:
       'Improve your relationship with cannabis. Take a 30-day break to reset and get clarity on your use.',
-    images: ['/images/og-image.png'],
+    images: ['/images/og-image.webp'],
   },
   icons: {
-    icon: '/images/favicon.png',
-    apple: '/images/apple-touch-icon.png',
+    icon: '/images/favicon.webp',
+    apple: '/images/apple-touch-icon.webp',
   },
   alternates: {
     canonical: 'https://clear30.org',

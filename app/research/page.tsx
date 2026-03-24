@@ -14,14 +14,14 @@ export const metadata = {
     description:
       'Explore the science behind Clear30 - peer-reviewed research, clinical advisors, and evidence-based approaches to cannabis wellness.',
     url: 'https://clear30.org/research',
-    images: [{ url: '/images/og-image.png' }],
+    images: [{ url: '/images/og-image.webp' }],
   },
   twitter: {
     card: 'summary_large_image' as const,
     title: 'Clear30 - Research',
     description:
       'Explore the science behind Clear30 - peer-reviewed research, clinical advisors, and evidence-based approaches to cannabis wellness.',
-    images: ['/images/og-image.png'],
+    images: ['/images/og-image.webp'],
   },
 };
 
@@ -50,13 +50,13 @@ export default function ResearchPage() {
               </div>
               <div className="research-hero-collage">
                 <div className="research-hero-collage-item research-hero-collage-item-1">
-                  <img src="/images/research_statistics1.png" alt="Reasons for Taking a Break" />
+                  <img src="/images/research_statistics1.webp" alt="Reasons for Taking a Break" />
                 </div>
                 <div className="research-hero-collage-item research-hero-collage-item-2">
-                  <img src="/images/research_statistics2.png" alt="Days Using Before Break" />
+                  <img src="/images/research_statistics2.webp" alt="Days Using Before Break" />
                 </div>
                 <div className="research-hero-collage-item research-hero-collage-item-3">
-                  <img src="/images/research_statistics3.png" alt="Clear30 Research Statistics" />
+                  <img src="/images/research_statistics3.webp" alt="Clear30 Research Statistics" />
                 </div>
               </div>
             </div>
@@ -95,13 +95,13 @@ export default function ResearchPage() {
               <p className="research-logos-label">Research partners</p>
               <div className="research-logos">
                 <div className="research-logo-item">
-                  <img src="/images/Harvard_university_logo.png" alt="Harvard University" />
+                  <img src="/images/Harvard_university_logo.webp" alt="Harvard University" />
                 </div>
                 <div className="research-logo-item">
-                  <img src="/images/Main_NIH_logo.png" alt="National Institutes of Health" />
+                  <img src="/images/Main_NIH_logo.webp" alt="National Institutes of Health" />
                 </div>
                 <div className="research-logo-item">
-                  <img src="/images/University-of-Michigan-Logo.png" alt="University of Michigan" />
+                  <img src="/images/University-of-Michigan-Logo.webp" alt="University of Michigan" />
                 </div>
               </div>
             </div>
@@ -111,7 +111,7 @@ export default function ResearchPage() {
           {/* NIH Funded Section */}
           <section className="research-nih-section" data-scroll-reveal>
             <div className="research-nih-logo">
-              <img src="/images/Research_NIH_Logo.png" alt="National Institutes of Health" />
+              <img src="/images/Research_NIH_Logo.webp" alt="National Institutes of Health" />
             </div>
             <div className="research-nih-inner">
               <div className="research-nih-header">
@@ -137,7 +137,7 @@ export default function ResearchPage() {
                   <a href="/book-demo" className="research-advisors-cta">Contact our team</a>
                 </div>
                 <div className="research-advisors-image">
-                  <img src="/images/Research_Fred_Header_Image.png" alt="Dr. Fred Muench - Clear30 Scientific and Clinical Advisors" />
+                  <img src="/images/Research_Fred_Header_Image.webp" alt="Dr. Fred Muench - Clear30 Scientific and Clinical Advisors" />
                 </div>
               </div>
             </div>
@@ -154,7 +154,7 @@ export default function ResearchPage() {
                 <ul className="research-leadership-list">
                   <li className="research-leadership-item">
                     <div className="research-leadership-photo">
-                      <img src="/images/Research_Alan_Budney.png" alt="Alan Budney" />
+                      <img src="/images/Research_Alan_Budney.webp" alt="Alan Budney" />
                     </div>
                     <div className="research-leadership-info">
                       <h3>Alan Budney, PhD</h3>
@@ -163,7 +163,7 @@ export default function ResearchPage() {
                   </li>
                   <li className="research-leadership-item">
                     <div className="research-leadership-photo">
-                      <img src="/images/Research_Thomas_McLellan.png" alt="A. Thomas McLellan" />
+                      <img src="/images/Research_Thomas_McLellan.webp" alt="A. Thomas McLellan" />
                     </div>
                     <div className="research-leadership-info">
                       <h3>A. Thomas McLellan, PhD</h3>
@@ -172,7 +172,7 @@ export default function ResearchPage() {
                   </li>
                   <li className="research-leadership-item">
                     <div className="research-leadership-photo">
-                      <img src="/images/Research_Stephen_DAntonio.png" alt="Stephen D'Antonio" />
+                      <img src="/images/Research_Stephen_DAntonio.webp" alt="Stephen D'Antonio" />
                     </div>
                     <div className="research-leadership-info">
                       <h3>Stephen D&apos;Antonio</h3>
@@ -181,7 +181,7 @@ export default function ResearchPage() {
                   </li>
                   <li className="research-leadership-item">
                     <div className="research-leadership-photo">
-                      <img src="/images/Research_Kamala_Génecé.png" alt="Kamala Génecé" />
+                      <img src="/images/Research_Kamala_Génecé.webp" alt="Kamala Génecé" />
                     </div>
                     <div className="research-leadership-info">
                       <h3>Kamala Génecé</h3>
@@ -190,7 +190,7 @@ export default function ResearchPage() {
                   </li>
                   <li className="research-leadership-item">
                     <div className="research-leadership-photo">
-                      <img src="/images/Research_Lauren_Johnson.png" alt="Lauren Johnson" />
+                      <img src="/images/Research_Lauren_Johnson.webp" alt="Lauren Johnson" />
                     </div>
                     <div className="research-leadership-info">
                       <h3>Lauren Johnson</h3>
@@ -199,7 +199,7 @@ export default function ResearchPage() {
                   </li>
                   <li className="research-leadership-item">
                     <div className="research-leadership-photo">
-                      <img src="/images/Research_Marcia_Lee_Taylor.png" alt="Marcia Lee Taylor" />
+                      <img src="/images/Research_Marcia_Lee_Taylor.webp" alt="Marcia Lee Taylor" />
                     </div>
                     <div className="research-leadership-info">
                       <h3>Marcia Lee Taylor</h3>
@@ -222,7 +222,7 @@ export default function ResearchPage() {
                 </div>
               </div>
               <div className="research-publications-book">
-                <img src="/images/Research_Peer_review.png" alt="Peer Review: A Critical Inquiry by David Shatz" />
+                <img src="/images/Research_Peer_review.webp" alt="Peer Review: A Critical Inquiry by David Shatz" />
               </div>
             </div>
           </section>
@@ -236,7 +236,7 @@ export default function ResearchPage() {
               <div className="research-citations-author">
                 <div className="research-citations-author-header">
                   <div className="research-citations-author-photo">
-                    <img src="/images/Research_Fred.png" alt="Fred Muench" />
+                    <img src="/images/Research_Fred.webp" alt="Fred Muench" />
                   </div>
                   <h3 className="research-citations-author-name">Fred Muench, PhD</h3>
                 </div>
@@ -283,7 +283,7 @@ export default function ResearchPage() {
               <div className="research-citations-author">
                 <div className="research-citations-author-header">
                   <div className="research-citations-author-photo">
-                    <img src="/images/Research_Alan_Budney.png" alt="Alan Budney" />
+                    <img src="/images/Research_Alan_Budney.webp" alt="Alan Budney" />
                   </div>
                   <h3 className="research-citations-author-name">Alan Budney, PhD</h3>
                 </div>

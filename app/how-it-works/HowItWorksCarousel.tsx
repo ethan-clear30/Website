@@ -12,12 +12,12 @@ const TABS = [
 ];
 
 const SLIDES = [
-  { src: '/images/How_it_works__set_intention.png', alt: 'Set intention' },
-  { src: '/images/How_it_works__track_daily.png', alt: 'Track daily' },
-  { src: '/images/How_it_works__see_progress.png', alt: 'See progress' },
-  { src: '/images/How_it_works__learn_and_reflect.png', alt: 'Learn and reflect' },
-  { src: '/images/How_it_works__get_support.png', alt: 'Get support' },
-  { src: '/images/How_it_works__sustain_progress.png', alt: 'Sustain progress' },
+  { src: '/images/How_it_works__set_intention.webp', alt: 'Set intention' },
+  { src: '/images/How_it_works__track_daily.webp', alt: 'Track daily' },
+  { src: '/images/How_it_works__see_progress.webp', alt: 'See progress' },
+  { src: '/images/How_it_works__learn_and_reflect.webp', alt: 'Learn and reflect' },
+  { src: '/images/How_it_works__get_support.webp', alt: 'Get support' },
+  { src: '/images/How_it_works__sustain_progress.webp', alt: 'Sustain progress' },
 ];
 
 export default function HowItWorksCarousel() {

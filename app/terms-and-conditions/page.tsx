@@ -12,14 +12,14 @@ export const metadata = {
     description:
       'Read the Clear30 Terms of Use governing your use of the Clear30 mobile application, AI tools, website features, and SMS messaging.',
     url: 'https://clear30.org/terms-and-conditions',
-    images: [{ url: '/images/og-image.png' }],
+    images: [{ url: '/images/og-image.webp' }],
   },
   twitter: {
     card: 'summary_large_image' as const,
     title: 'Clear30 - Terms and Conditions',
     description:
       'Read the Clear30 Terms of Use governing your use of the Clear30 mobile application, AI tools, website features, and SMS messaging.',
-    images: ['/images/og-image.png'],
+    images: ['/images/og-image.webp'],
   },
 };
 

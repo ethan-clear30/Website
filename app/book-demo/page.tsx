@@ -14,14 +14,14 @@ export const metadata = {
     description:
       'Schedule a demo to see how Clear30 can support cannabis wellness on your campus or in your organization.',
     url: 'https://clear30.org/book-demo',
-    images: [{ url: '/images/og-image.png' }],
+    images: [{ url: '/images/og-image.webp' }],
   },
   twitter: {
     card: 'summary_large_image' as const,
     title: 'Clear30 - Book a Demo',
     description:
       'Schedule a demo to see how Clear30 can support cannabis wellness on your campus or in your organization.',
-    images: ['/images/og-image.png'],
+    images: ['/images/og-image.webp'],
   },
 };
 

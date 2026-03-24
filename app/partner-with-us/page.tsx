@@ -15,14 +15,14 @@ export const metadata = {
     description:
       'Partner with Clear30 to bring evidence-based cannabis wellness tools to your campus, organization, or community.',
     url: 'https://clear30.org/partner-with-us',
-    images: [{ url: '/images/og-image.png' }],
+    images: [{ url: '/images/og-image.webp' }],
   },
   twitter: {
     card: 'summary_large_image' as const,
     title: 'Clear30 - Partner with us',
     description:
       'Partner with Clear30 to bring evidence-based cannabis wellness tools to your campus, organization, or community.',
-    images: ['/images/og-image.png'],
+    images: ['/images/og-image.webp'],
   },
 };
 
@@ -55,7 +55,7 @@ export default function PartnerWithUsPage() {
               <div className="partner-hero-right hero-animate-delay">
                 <div className="partner-hero-image">
                   <img
-                    src="/images/partner_with_us_hero.png"
+                    src="/images/partner_with_us_hero.webp"
                     alt="Clear30 - The New Standard for Cannabis Support"
                   />
                 </div>
@@ -123,7 +123,7 @@ export default function PartnerWithUsPage() {
               </div>
               <div className="approach-right">
                 <img
-                  src="/images/Partner_with_us_collage.png"
+                  src="/images/Partner_with_us_collage.webp"
                   alt="Clear30 approach"
                   className="approach-collage-img"
                 />
@@ -161,7 +161,7 @@ export default function PartnerWithUsPage() {
                   <div className="why-mockup-box">
                     <div className="why-mockup-wrap">
                       <img
-                        src="/images/partner_with_us_clear30mockup.png"
+                        src="/images/partner_with_us_clear30mockup.webp"
                         alt="Clear30 app mockup"
                         className="why-mockup-img"
                       />
@@ -235,7 +235,7 @@ export default function PartnerWithUsPage() {
                     <div className="engagement-card-icon-ring">
                       <div className="engagement-card-icon-inner">
                         <img
-                          src="/images/Partner_with_us_white_30.png"
+                          src="/images/Partner_with_us_white_30.webp"
                           alt=""
                           className="engagement-card-icon-img"
                         />
@@ -283,7 +283,7 @@ export default function PartnerWithUsPage() {
             <div className="cta-card-wrap">
               <div className="cta-card">
                 <img
-                  src="/images/Partner_with_us_bottom_imgae_mockup.png"
+                  src="/images/Partner_with_us_bottom_imgae_mockup.webp"
                   alt="Clear30 app on phone"
                   className="cta-card-image"
                 />

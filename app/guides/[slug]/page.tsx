@@ -24,13 +24,13 @@ export function generateMetadata({ params }: Props): Metadata {
       title: `${guide.title} - Clear30`,
       description: guide.subtitle,
       url: `https://clear30.org/guides/${guide.id}`,
-      images: [{ url: '/images/og-image.png' }],
+      images: [{ url: '/images/og-image.webp' }],
     },
     twitter: {
       card: 'summary_large_image' as const,
       title: `${guide.title} - Clear30`,
       description: guide.subtitle,
-      images: ['/images/og-image.png'],
+      images: ['/images/og-image.webp'],
     },
   };
 }
@@ -44,7 +44,7 @@ export default function GuidePage({ params }: Props) {
       <header className="resource-header-bar">
         <div className="resource-header-content">
           <Link href="/" className="logo">
-            <img src="/images/PNG App Logo.png" alt="Clear30" className="logo-icon" />
+            <img src="/images/PNG App Logo.webp" alt="Clear30" className="logo-icon" />
             <span className="logo-text">Clear30</span>
           </Link>
           <Link href="/resources" className="back-link">

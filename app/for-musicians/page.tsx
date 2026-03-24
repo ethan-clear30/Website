@@ -13,14 +13,14 @@ export const metadata = {
     description:
       'Clear30 for musicians — a simple way to reflect on your relationship with cannabis, in and out of the studio.',
     url: 'https://clear30.org/for-musicians',
-    images: [{ url: '/images/og-image.png' }],
+    images: [{ url: '/images/og-image.webp' }],
   },
   twitter: {
     card: 'summary_large_image' as const,
     title: 'Clear30 - For Musicians',
     description:
       'Clear30 for musicians — a simple way to reflect on your relationship with cannabis, in and out of the studio.',
-    images: ['/images/og-image.png'],
+    images: ['/images/og-image.webp'],
   },
 };
 

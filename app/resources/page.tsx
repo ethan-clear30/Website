@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     description:
       'Free tools, guides, and resources for campus wellness teams and individuals taking a 30-day cannabis break with Clear30.',
     url: 'https://clear30.org/resources',
-    images: [{ url: '/images/og-image.png' }],
+    images: [{ url: '/images/og-image.webp' }],
   },
   twitter: {
     card: 'summary_large_image' as const,
     title: 'Clear30 - Resources',
     description:
       'Free tools, guides, and resources for campus wellness teams and individuals taking a 30-day cannabis break with Clear30.',
-    images: ['/images/og-image.png'],
+    images: ['/images/og-image.webp'],
   },
 };
 
@@ -52,7 +52,7 @@ export default function ResourcesPage() {
           </div>
           <div className="resources-hero-image">
             <div className="resources-hero-image-box">
-              <img src="/images/Cannabis_support_kit.png" alt="Campus Cannabis Support Kit" />
+              <img src="/images/Cannabis_support_kit.webp" alt="Campus Cannabis Support Kit" />
             </div>
           </div>
         </section>

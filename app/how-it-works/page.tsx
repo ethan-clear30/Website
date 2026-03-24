@@ -12,13 +12,13 @@ export const metadata = {
     title: 'Clear30 - How it works',
     description: 'How Clear30 works.',
     url: 'https://clear30.org/how-it-works',
-    images: [{ url: '/images/og-image.png' }],
+    images: [{ url: '/images/og-image.webp' }],
   },
   twitter: {
     card: 'summary_large_image' as const,
     title: 'Clear30 - How it works',
     description: 'How Clear30 works.',
-    images: ['/images/og-image.png'],
+    images: ['/images/og-image.webp'],
   },
 };
 
@@ -39,7 +39,7 @@ export default function HowItWorksPage() {
               <div className="step">
                 <div className="step-num">
                   <img
-                    src="/images/How_it_works_3.png"
+                    src="/images/How_it_works_3.webp"
                     alt="Step 1"
                     className="step-num-img"
                   />
@@ -74,7 +74,7 @@ export default function HowItWorksPage() {
               <div className="step">
                 <div className="step-num">
                   <img
-                    src="/images/How_it_works_2.png"
+                    src="/images/How_it_works_2.webp"
                     alt="Step 2"
                     className="step-num-img"
                   />
@@ -109,7 +109,7 @@ export default function HowItWorksPage() {
               <div className="step">
                 <div className="step-num">
                   <img
-                    src="/images/How_it_works_1.png"
+                    src="/images/How_it_works_1.webp"
                     alt="Step 3"
                     className="step-num-img"
                   />

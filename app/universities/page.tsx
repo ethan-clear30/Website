@@ -14,14 +14,14 @@ export const metadata = {
     description:
       'See how universities use Clear30 to support student wellness and reduce cannabis-related harm on campus.',
     url: 'https://clear30.org/universities',
-    images: [{ url: '/images/og-image.png' }],
+    images: [{ url: '/images/og-image.webp' }],
   },
   twitter: {
     card: 'summary_large_image' as const,
     title: 'Clear30 - Universities',
     description:
       'See how universities use Clear30 to support student wellness and reduce cannabis-related harm on campus.',
-    images: ['/images/og-image.png'],
+    images: ['/images/og-image.webp'],
   },
 };
 
@@ -217,7 +217,7 @@ export default function UniversitiesPage() {
             <div className="approach-mockup">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/Universities-Iphones_mockup.png"
+                src="/images/Universities-Iphones_mockup.webp"
                 alt="Clear30 app on phones"
                 className="approach-mockup-img"
               />

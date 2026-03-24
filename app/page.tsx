@@ -15,14 +15,14 @@ export const metadata = {
     description:
       'Improve your relationship with cannabis. Take a 30-day break to reset and get clarity on your use.',
     url: 'https://clear30.org',
-    images: [{ url: '/images/og-image.png' }],
+    images: [{ url: '/images/og-image.webp' }],
   },
   twitter: {
     card: 'summary_large_image' as const,
     title: 'Clear30 - The Weed Break App',
     description:
       'Improve your relationship with cannabis. Take a 30-day break to reset and get clarity on your use.',
-    images: ['/images/og-image.png'],
+    images: ['/images/og-image.webp'],
   },
 };
 
@@ -91,7 +91,7 @@ export default function Home() {
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                    src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.webp"
                     alt="Get it on Google Play"
                     height={48}
                   />
@@ -101,7 +101,7 @@ export default function Home() {
             <div className="hero-right">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/phone_mockup_2 final.png"
+                src="/images/phone_mockup_2 final.webp"
                 alt="Clear30 app on iPhone"
                 className="hero-image"
               />
@@ -118,7 +118,7 @@ export default function Home() {
               <div className="institution-logo um">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/University-of-Michigan-Logo.png"
+                  src="/images/University-of-Michigan-Logo.webp"
                   alt="University of Michigan"
                   className="institution-logo-img"
                 />
@@ -126,7 +126,7 @@ export default function Home() {
               <div className="institution-logo northwestern">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/Main_Amherst.png"
+                  src="/images/Main_Amherst.webp"
                   alt="Amherst"
                   className="institution-logo-img"
                 />
@@ -143,7 +143,7 @@ export default function Home() {
               <div className="institution-logo dartmouth">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/Dartmouth-Logo-before-2018.png"
+                  src="/images/Dartmouth-Logo-before-2018.webp"
                   alt="Dartmouth"
                   className="institution-logo-img"
                 />
@@ -151,7 +151,7 @@ export default function Home() {
               <div className="institution-logo detroit">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/city-of-detroit-logo.png"
+                  src="/images/city-of-detroit-logo.webp"
                   alt="City of Detroit"
                   className="institution-logo-img"
                 />
@@ -174,7 +174,7 @@ export default function Home() {
                 <span className="potency-badge mild">3% THC</span>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/Main_Leaf.png"
+                  src="/images/Main_Leaf.webp"
                   alt="1970's Cannabis"
                   className="potency-icon"
                 />
@@ -185,7 +185,7 @@ export default function Home() {
                 <span className="potency-badge high">30% THC</span>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/Main_No_Leaf.png"
+                  src="/images/Main_No_Leaf.webp"
                   alt="Today's Cannabis"
                   className="potency-icon"
                 />
@@ -291,13 +291,13 @@ export default function Home() {
               <div className="trust-clear30-card-images">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/Main_Fred.png"
+                  src="/images/Main_Fred.webp"
                   alt="Dr. Fred Muench"
                   className="trust-clear30-img"
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/Main_Thomas_McLellan.png"
+                  src="/images/Main_Thomas_McLellan.webp"
                   alt="A. Thomas McLellan, PhD"
                   className="trust-clear30-img"
                 />
@@ -321,13 +321,13 @@ export default function Home() {
               <div className="trust-clear30-card-images">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/Main_Michigan.png"
+                  src="/images/Main_Michigan.webp"
                   alt="University of Michigan"
                   className="trust-clear30-img rect"
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/Main_Harvard_logo.png"
+                  src="/images/Main_Harvard_logo.webp"
                   alt="Harvard University"
                   className="trust-clear30-img"
                 />
@@ -350,7 +350,7 @@ export default function Home() {
               <div className="trust-clear30-card-images">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/Main_NIH_logo.png"
+                  src="/images/Main_NIH_logo.webp"
                   alt="National Institutes of Health"
                   className="trust-clear30-img rect"
                 />
@@ -369,7 +369,7 @@ export default function Home() {
               <div className="trust-clear30-card-images">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/Main_Clear30_logo.png"
+                  src="/images/Main_Clear30_logo.webp"
                   alt="Clear30"
                   className="trust-clear30-img rect"
                 />

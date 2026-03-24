@@ -11,16 +11,16 @@ interface LogoData {
 
 const logos: LogoData[] = [
   // PATH 1 (outer arc) — 5 circles
-  { src: '/images/universities/University_Amherst_college.png', alt: 'Amherst', className: 'university-logo university-logo--grinnell', path: 1 },
-  { src: '/images/universities/University_Dartmouth.png', alt: 'Dartmouth', className: 'university-logo university-logo--dartmouth', path: 1 },
-  { src: '/images/universities/University_Michigan.png', alt: 'Michigan', className: 'university-logo university-logo--m', path: 1 },
-  { src: '/images/universities/University_Vassar.png', alt: 'Vassar', className: 'university-logo university-logo--grinnell', path: 1 },
-  { src: '/images/universities/University_Massart.png', alt: 'MassArt', className: 'university-logo university-logo--detroit', path: 1 },
+  { src: '/images/universities/University_Amherst_college.webp', alt: 'Amherst', className: 'university-logo university-logo--grinnell', path: 1 },
+  { src: '/images/universities/University_Dartmouth.webp', alt: 'Dartmouth', className: 'university-logo university-logo--dartmouth', path: 1 },
+  { src: '/images/universities/University_Michigan.webp', alt: 'Michigan', className: 'university-logo university-logo--m', path: 1 },
+  { src: '/images/universities/University_Vassar.webp', alt: 'Vassar', className: 'university-logo university-logo--grinnell', path: 1 },
+  { src: '/images/universities/University_Massart.webp', alt: 'MassArt', className: 'university-logo university-logo--detroit', path: 1 },
   // PATH 2 (inner arc) — 4 circles
-  { src: '/images/universities/University_Harvard.png', alt: 'Harvard', className: 'university-logo university-logo--harvard', path: 2 },
-  { src: '/images/universities/University_JMU.png', alt: 'JMU', className: 'university-logo university-logo--black', path: 2 },
-  { src: '/images/universities/Universty_EIU.png', alt: 'EIU', className: 'university-logo university-logo--black', path: 2 },
-  { src: '/images/universities/University_NIU.png', alt: 'NIU', className: 'university-logo university-logo--black', path: 2 },
+  { src: '/images/universities/University_Harvard.webp', alt: 'Harvard', className: 'university-logo university-logo--harvard', path: 2 },
+  { src: '/images/universities/University_JMU.webp', alt: 'JMU', className: 'university-logo university-logo--black', path: 2 },
+  { src: '/images/universities/Universty_EIU.webp', alt: 'EIU', className: 'university-logo university-logo--black', path: 2 },
+  { src: '/images/universities/University_NIU.webp', alt: 'NIU', className: 'university-logo university-logo--black', path: 2 },
 ];
 
 const LOOP_MS = 28000;

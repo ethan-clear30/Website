@@ -12,14 +12,14 @@ export const metadata = {
     description:
       'Learn how Clear30 collects, uses, shares, and protects your information when you use the Clear30 app and services.',
     url: 'https://clear30.org/privacy-policy',
-    images: [{ url: '/images/og-image.png' }],
+    images: [{ url: '/images/og-image.webp' }],
   },
   twitter: {
     card: 'summary_large_image' as const,
     title: 'Clear30 - Privacy Policy',
     description:
       'Learn how Clear30 collects, uses, shares, and protects your information when you use the Clear30 app and services.',
-    images: ['/images/og-image.png'],
+    images: ['/images/og-image.webp'],
   },
 };
 
