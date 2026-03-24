@@ -1,0 +1,54 @@
+# 301 redirects for old pages (SEO-friendly permanent redirects)
+/4-21 / 301
+/4-21-schools /universities 301
+/about /research 301
+/demo /book-demo 301
+/for-schools /universities 301
+/guides /resources 301
+/influencer /for-musicians 301
+/promote-pack /resources 301
+/research-study /research 301
+/videos / 301
+/weekly-support-group /join-a-group 301
+/white-label /partner-with-us 301
+/why-take-a-bareak-from-weed / 301
+
+# Referral links
+/mlb /referral/?code=free2mlb 301
+/dr-wade /referral/?code=free2wade 301
+
+# Short links
+/why-break /why-take-a-break-from-weed 301
+/wellness-toolkit-embed /embed 301
+
+# Group leader links
+/gabe /join-a-group/?group_id=0d47fe33-0752-47f7-a6fc-e8fcfcde7ba7&name=Gabe 301
+/mitch /join-a-group/?group_id=c1dbb18b-e224-48a8-9a6b-48e2e2abb34b&name=Mitch 301
+/quit-city /join-a-group/?group_id=4667dadc-bb44-4f2a-9d37-994709e22be7&name=Asher 301
+/shiesty_asher_group /join-a-group/?group_id=ab4fd3e2-5ca8-44d7-9082-4c93a6af2f06&name=Asher 301
+/gerad /join-a-group/?group_id=339504c9-2346-428c-aded-47d6686ac2de&name=Gerad 301
+/birchy /join-a-group/?group_id=133d856c-7b8f-406a-a1bb-90473a38fe90&name=Tom-Birchy 301
+/nathan /join-a-group/?group_id=d84ef3fb-ea0d-473f-900a-8d4af6143379&name=Nathan 301
+/leek /join-a-group/?group_id=1b2f3830-3a42-4f4a-9840-b630406e7f78&name=Malik 301
+
+# School links
+/det /school-link?school=city_of_detroit&key=general 301
+/umich /school-link?school=umich&key=general 301
+/massart /school-link?school=massart&key=general 301
+/dartmouth /school-link?school=dartmouth&key=general 301
+/odu /schools/referral/?school=Old%20Dominion%20University&students=Monarchs&email=@odu.edu 301
+/northwestern /school-link?school=northwestern&key=general 301
+/amherst /school-link?school=amherst&key=general 301
+/wustl /school-link?school=wustl&key=general 301
+/butler /school-link?school=butler&key=general 301
+/eiu /school-link?school=eiu&key=general 301
+/neiu /school-link?school=neiu&key=general 301
+/jmu /school-link?school=jmu&key=general 301
+/vassar /school-link?school=vassar&key=general 301
+
+# External redirects
+/app https://apps.apple.com/us/app/clear30/id6476418203 301
+/zoom https://us06web.zoom.us/j/81512693951?pwd=ZxAmxsTvKrDXZeK1fohQya6r15qLXP.1 301
+/support-group https://us06web.zoom.us/j/83374445141 301
+/testimonial https://notion.so/Clear30-Testimonial-Video-Guide-26bdd984ff8d80ccb035e90a84bbd2dd 301
+/asher https://calendly.com/asher-clear30/chat-with-asher 301

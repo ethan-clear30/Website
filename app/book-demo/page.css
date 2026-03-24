@@ -1,0 +1,106 @@
+.book-demo-page-wrapper {
+  background: linear-gradient(180deg,
+    rgba(128, 201, 122, 0.15) 0%,
+    rgba(91, 180, 169, 0.08) 30%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  min-height: 100vh;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Lexend', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #5BB4A9;
+  text-decoration: none;
+  margin-bottom: 24px;
+  transition: color 0.2s ease;
+}
+.back-link:hover {
+  color: #80C97A;
+}
+.back-link::before {
+  content: '\2190';
+  font-size: 18px;
+}
+
+.calendly-section {
+  padding: 48px 24px 80px;
+  max-width: 1000px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(48px);
+  animation: heroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+}
+
+@keyframes heroReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.calendly-heading {
+  font-family: 'Lexend', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 32px;
+  background: linear-gradient(90deg, #80C97A 0%, #5BB4A9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.calendly-inner {
+  width: 100%;
+  min-height: 700px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.calendly-inner iframe {
+  width: 100%;
+  height: 700px;
+  border: none;
+}
+
+.calendly-email-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-family: 'Lexend', sans-serif;
+  font-size: 15px;
+  color: #4a4a4a;
+}
+
+.calendly-email-link a {
+  color: #5BB4A9;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.calendly-email-link a:hover {
+  color: #80C97A;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .calendly-section {
+    padding: 32px 16px 60px;
+  }
+  .calendly-heading {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+  .calendly-inner {
+    min-height: 600px;
+  }
+  .calendly-inner iframe {
+    height: 600px;
+  }
+}

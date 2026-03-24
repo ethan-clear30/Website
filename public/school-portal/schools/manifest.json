@@ -1,0 +1,67 @@
+{
+  "ids": [
+    "amherst",
+    "butler",
+    "city_of_detroit",
+    "dartmouth",
+    "eiu",
+    "jmu",
+    "massart",
+    "neiu",
+    "northwestern",
+    "umich",
+    "vassar",
+    "wustl"
+  ],
+  "titles": {
+    "eiu": "EIU",
+    "wustl": "WashU",
+    "city_of_detroit": "Detroit"
+  },
+  "colors": {
+    "umich": {
+      "color1": "00274C",
+      "color2": "00274C"
+    },
+    "northwestern": {
+      "color1": "4E2A84",
+      "color2": "4E2A84"
+    },
+    "dartmouth": {
+      "color1": "00693E",
+      "color2": "00693E"
+    },
+    "wustl": {
+      "color1": "A51417",
+      "color2": "A51417"
+    },
+    "amherst": {
+      "color1": "3F1F69",
+      "color2": "3F1F69"
+    },
+    "vassar": {
+      "color1": "8B0000",
+      "color2": "8B0000"
+    },
+    "massart": {
+      "color1": "1a1a1a",
+      "color2": "1a1a1a"
+    },
+    "butler": {
+      "color1": "13294B",
+      "color2": "13294B"
+    },
+    "jmu": {
+      "color1": "450084",
+      "color2": "450084"
+    },
+    "eiu": {
+      "color1": "004B83",
+      "color2": "004B83"
+    },
+    "city_of_detroit": {
+      "color1": "006747",
+      "color2": "006747"
+    }
+  }
+}

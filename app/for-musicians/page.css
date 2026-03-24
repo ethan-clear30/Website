@@ -1,0 +1,220 @@
+/* ── For Musicians Page Styles ── */
+
+.musicians-page {
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+/* ── Hero ── */
+.musicians-hero {
+  padding: 56px 64px 40px;
+  text-align: center;
+}
+
+.musicians-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 12px;
+}
+
+.musicians-hero .subtitle {
+  font-size: 1.125rem;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ── Two-column sections ── */
+.musicians-section {
+  padding: 40px 64px;
+}
+
+.musicians-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.two-col {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.two-col.reverse {
+  flex-direction: row-reverse;
+}
+
+.col {
+  flex: 1;
+  min-width: 0;
+}
+
+.col h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 16px;
+}
+
+.col p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #333;
+}
+
+/* ── Card ── */
+.card {
+  background: #f8f8f8;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pdf-image {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* ── Gradient Button ── */
+.gradient-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #80c97a 0%, #5bb4a9 100%);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.gradient-button:hover {
+  opacity: 0.9;
+}
+
+/* ── App Screenshots ── */
+.duo-images {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.duo-image {
+  width: 48%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.duo-image.smaller {
+  width: 40%;
+}
+
+/* ── Download Card (QR) ── */
+.download-card {
+  background: #f8f8f8;
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.qr-code {
+  width: 200px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.download-card p {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+}
+
+.download-card .desktop-hint {
+  font-size: 0.875rem;
+  color: #777;
+  margin-top: 4px;
+}
+
+.mobile-download-link {
+  display: none;
+}
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #80c97a 0%, #5bb4a9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Share Button ── */
+.share-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: #f0f0f0;
+  color: #333;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 16px;
+}
+
+.share-button:hover {
+  background: #e0e0e0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .musicians-hero {
+    padding: 40px 24px 24px;
+  }
+
+  .musicians-hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .musicians-section {
+    padding: 24px;
+  }
+
+  .two-col,
+  .two-col.reverse {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .duo-images {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .duo-image,
+  .duo-image.smaller {
+    width: 80%;
+  }
+
+  .mobile-download-link {
+    display: inline-block;
+  }
+
+  .desktop-hint {
+    display: none;
+  }
+}
