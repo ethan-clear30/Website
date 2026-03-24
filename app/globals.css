@@ -472,6 +472,11 @@ body {
   .nav-links {
     display: none;
   }
+  .cta-button,
+  .cta-button-mini,
+  .header--mini .cta-button-mini {
+    display: none !important;
+  }
 }
 
 @media (max-width: 768px) {
