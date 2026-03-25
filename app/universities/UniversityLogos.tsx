@@ -7,19 +7,24 @@ interface LogoData {
   alt: string;
   className: string;
   path: number;
+  /** Hide while spline y is above this (px). Both lanes share one arc, so inner-loop logos still traverse the top unless clipped. */
+  hideAboveY?: number;
 }
 
 const logos: LogoData[] = [
-  // PATH 1 (outer arc) — 5 circles
+  // PATH 1 (outer arc)
   { src: '/images/universities/University_Amherst_college.webp', alt: 'Amherst', className: 'university-logo university-logo--grinnell', path: 1 },
-  { src: '/images/universities/University_Dartmouth.webp', alt: 'Dartmouth', className: 'university-logo university-logo--dartmouth', path: 1 },
   { src: '/images/universities/University_Michigan.webp', alt: 'Michigan', className: 'university-logo university-logo--m', path: 1 },
-  { src: '/images/universities/University_Vassar.webp', alt: 'Vassar', className: 'university-logo university-logo--grinnell', path: 1 },
   { src: '/images/universities/University_Massart.webp', alt: 'MassArt', className: 'university-logo university-logo--detroit', path: 1 },
-  // PATH 2 (inner arc) — 4 circles
+  // PATH 2 (inner arc — bottom / inner loop)
   { src: '/images/universities/University_Harvard.webp', alt: 'Harvard', className: 'university-logo university-logo--harvard', path: 2 },
-  { src: '/images/universities/University_JMU.webp', alt: 'JMU', className: 'university-logo university-logo--black', path: 2 },
-  { src: '/images/universities/Universty_EIU.webp', alt: 'EIU', className: 'university-logo university-logo--black', path: 2 },
+  {
+    src: '/images/universities/University_Dartmouth.webp',
+    alt: 'Dartmouth',
+    className: 'university-logo university-logo--dartmouth',
+    path: 2,
+    hideAboveY: 300,
+  },
   { src: '/images/universities/University_NIU.webp', alt: 'NIU', className: 'university-logo university-logo--black', path: 2 },
 ];
 
@@ -122,7 +127,12 @@ function place(el: HTMLElement, sp: Spline, t: number, reverse: boolean) {
   const pt = splineAt(sp, tLookup);
   el.style.left = pt.x + 'px';
   el.style.top = pt.y + 'px';
-  el.style.opacity = String(reverse ? opacityRev(t) : opacityFwd(t));
+  let opacity = reverse ? opacityRev(t) : opacityFwd(t);
+  const clipY = el.dataset.hideAboveY;
+  if (clipY !== undefined && clipY !== '' && !Number.isNaN(Number(clipY)) && pt.y < Number(clipY)) {
+    opacity = 0;
+  }
+  el.style.opacity = String(opacity);
 }
 
 function placeLaneStatic(els: HTMLElement[], sp: Spline, minGapPx: number, reverse: boolean, startOffset: number) {
@@ -144,15 +154,6 @@ function placeLaneStatic(els: HTMLElement[], sp: Spline, minGapPx: number, rever
     } else {
       el.style.opacity = '0';
     }
-  });
-}
-
-function placeLaneStaticUniform(els: HTMLElement[], sp: Spline, minGapPx: number, reverse: boolean, startOffset: number) {
-  const evenStep = 1 / els.length;
-  const minStep = minGapPx / sp.total;
-  const step = Math.max(evenStep, minStep);
-  els.forEach((el, i) => {
-    place(el, sp, startOffset + i * step, reverse);
   });
 }
 
@@ -192,7 +193,7 @@ export default function UniversityLogos() {
 
     function placeStatic() {
       placeLaneStatic(p1Els, SP1, MIN_GAP_P1, false, 0);
-      placeLaneStaticUniform(p2Els, SP2, MIN_GAP_P2, true, 0.1);
+      placeLaneStatic(p2Els, SP2, MIN_GAP_P2, true, 0.12);
     }
 
     let rafId: number;
@@ -202,10 +203,8 @@ export default function UniversityLogos() {
         rafId = requestAnimationFrame(tick);
         return;
       }
-      const prog = (ts % LOOP_MS) / LOOP_MS;
       placeLaneAnimated(p1Els, SP1, MIN_GAP_P1, false, ts, 0);
-      const p2Step = Math.max(1 / p2Els.length, MIN_GAP_P2 / SP2.total);
-      p2Els.forEach((el, i) => place(el, SP2, prog + 0.1 + i * p2Step, true));
+      placeLaneAnimated(p2Els, SP2, MIN_GAP_P2, true, ts, 0.12);
       rafId = requestAnimationFrame(tick);
     }
 
@@ -217,7 +216,12 @@ export default function UniversityLogos() {
   return (
     <div className="universities-logos" id="universities-logos" ref={containerRef}>
       {logos.map((logo, i) => (
-        <div key={i} className={logo.className} data-path={String(logo.path)}>
+        <div
+          key={i}
+          className={logo.className}
+          data-path={String(logo.path)}
+          {...(logo.hideAboveY !== undefined ? { 'data-hide-above-y': String(logo.hideAboveY) } : {})}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={logo.src} alt={logo.alt} />
         </div>
