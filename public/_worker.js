@@ -8,12 +8,13 @@ export default {
 
     for (const root of spaRoots) {
       if (path.startsWith(root + '/') || path === root) {
-        // Let static asset requests pass through
-        if (path.match(/\.(js|css|png|jpg|jpeg|gif|svg|ico|woff2?|ttf|eot|json|webmanifest|map|txt)$/)) {
-          return env.ASSETS.fetch(request);
+        // Try serving the exact asset first
+        const assetResponse = await env.ASSETS.fetch(request);
+        if (assetResponse.status !== 404) {
+          return assetResponse;
         }
 
-        // Serve the SPA's index.html for all other routes
+        // Asset not found — fall back to the SPA's index.html
         return env.ASSETS.fetch(new URL(root + '/index.html', url.origin));
       }
     }
