@@ -31,6 +31,9 @@
 /nathan /join-a-group/?group_id=d84ef3fb-ea0d-473f-900a-8d4af6143379&name=Nathan 301
 /leek /join-a-group/?group_id=1b2f3830-3a42-4f4a-9840-b630406e7f78&name=Malik 301
 
+# School link tracking (proxy to Supabase edge function, preserves query params)
+/school-link https://quluipmdicjsolnsopkg.supabase.co/functions/v1/school_link_track 302
+
 # School links
 /det /school-link?school=city_of_detroit&key=general 301
 /umich /school-link?school=umich&key=general 301
@@ -45,6 +48,7 @@
 /neiu /school-link?school=neiu&key=general 301
 /jmu /school-link?school=jmu&key=general 301
 /vassar /school-link?school=vassar&key=general 301
+/monmouth /school-link?school=monmouth&key=general 301
 
 # External redirects
 /app https://apps.apple.com/us/app/clear30/id6476418203 301
